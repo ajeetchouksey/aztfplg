@@ -1,5 +1,5 @@
 
 resource "azurerm_resource_group" "example" {
-    name     = "example-resources"
-    location = "West Europe"
+    name     = local.core_resource_group_name
+    location = local.location
 }
