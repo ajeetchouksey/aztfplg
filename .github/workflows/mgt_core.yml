@@ -22,6 +22,15 @@ jobs:
               with:
                     terraform_version: 1.0.0
 
+              
             - name: Terraform Init
-              run: terraform init
+              run: terraform init -backend-config="path=mgt_rg.tfstate"
+              working-directory: ./management_lz/infra
+
+            - name: Terraform Validate
+              run: terraform validate
+              working-directory: ./management_lz/infra
+
+            - name: Terraform Plan
+              run: terraform plan -out=tfplan -state=mgt_rg.tfstate
               working-directory: ./management_lz/infra
