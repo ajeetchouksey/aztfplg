@@ -1,4 +1,5 @@
 terraform {
+
     backend "local" {
         path = "terraform.tfstate"
     }
@@ -13,4 +14,8 @@ terraform {
             version = "= 3.5.1"
         }
     }
+}
+
+provider "azurerm" {
+  features {}
 }
