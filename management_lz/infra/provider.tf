@@ -14,3 +14,8 @@ terraform {
         }
     }
 }
+provider "azurerm" {
+    features {}
+    use_msi = true
+    client_id = "812086d5-b17f-4983-9047-97053307649d"
+}
