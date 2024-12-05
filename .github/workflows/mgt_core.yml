@@ -13,6 +13,14 @@ jobs:
     name: 'Management_LZ_Core_Infra'
     runs-on: ubuntu-latest
 
+    env:
+      AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID || '' }}
+      AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+      AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+      AZURE_STORAGE_ACCOUNT_NAME: ${{ secrets.AZURE_STORAGE_ACCOUNT_NAME }}
+      AZURE_STORAGE_CONTAINER_NAME: ${{ secrets.AZURE_STORAGE_CONTAINER_NAME }}
+      AZURE_STORAGE_ACCESS_KEY: ${{ secrets.AZURE_STORAGE_ACCESS_KEY }}
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -23,10 +31,4 @@ jobs:
           terraform_version: 1.0.0
 
       - name: Azure CLI Login with Service Principal
-        run: az login --service-principal -u ${{ secrets.AZURE_CLIENT_ID }} -p ${{ secrets.AZURE_CLIENT_SECRET }} --tenant ${{ secrets.AZURE_TENANT_ID }}
-
-      - name: Terraform Init with Azure Backend
-        run: terraform init -backend-config="storage_account_name=${{ secrets.AZURE_STORAGE_ACCOUNT_NAME}}" -backend-config="container_name=${{ secrets.AZURE_STORAGE_CONTAINER_NAME}}" -backend-config="key=mgt_core_infra.tfstate" -backend-config="access_key=${{ secrets.AZURE_STORAGE_ACCESS_KEY}}"
-        working-directory: ./management_lz/infra
-
-     
+        run: az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET --tenant $AZURE_TENANT_ID
