@@ -31,4 +31,4 @@ jobs:
           terraform_version: 1.0.0
 
       - name: Azure CLI Login with Service Principal
-        run: az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET --tenant $AZURE_TENANT_ID
+        run: az login --service-principal -u ${{ env.AZURE_CLIENT_ID }} -p ${{ env.AZURE_CLIENT_SECRET }} --tenant ${{ env.AZURE_TENANT_ID }}
