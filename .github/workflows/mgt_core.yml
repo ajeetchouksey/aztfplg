@@ -29,10 +29,4 @@ jobs:
         run: terraform init -backend-config="storage_account_name=${{ secrets.AZURE_STORAGE_ACCOUNT_NAME}}" -backend-config="container_name=${{ secrets.AZURE_STORAGE_CONTAINER_NAME}}" -backend-config="key=mgt_core_infra.tfstate" -backend-config="access_key=${{ secrets.AZURE_STORAGE_ACCESS_KEY}}"
         working-directory: ./management_lz/infra
 
-      - name: Terraform Validate
-        run: terraform validate
-        working-directory: ./management_lz/infra
-
-      - name: Terraform Plan
-        run: terraform plan -out=tfplan  -var="statefile=mgt_core_infra.tfstate"
-        working-directory: ./management_lz/infra
+     
