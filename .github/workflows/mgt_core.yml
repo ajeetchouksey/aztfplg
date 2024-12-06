@@ -4,9 +4,13 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'management_lz/**'
   pull_request:
     branches:
       - main
+    paths:
+      - 'management_lz/**'
 
 jobs:
   terraform:
