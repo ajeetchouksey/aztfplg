@@ -63,7 +63,7 @@ jobs:
         id: validate
         working-directory: ./management_lz
         run: terraform validate 
-
+# plan
       - name: Terraform Plan
         id: plan
         working-directory: ./management_lz
