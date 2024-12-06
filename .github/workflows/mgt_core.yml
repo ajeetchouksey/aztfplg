@@ -47,7 +47,7 @@ jobs:
       # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
       - name: Terraform Init
         id: init
-
+        working-directory: ./management_lz/infra
         env:
           ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
           ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
@@ -61,12 +61,12 @@ jobs:
         
       - name: Terraform Validate
         id: validate
-        working-directory: ./management_lz
+        working-directory: ./management_lz/infra
         run: terraform validate 
 # plan
       - name: Terraform Plan
         id: plan
-    
+        working-directory: ./management_lz/infra
         env:
             ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
             ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
