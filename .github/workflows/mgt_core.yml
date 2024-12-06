@@ -1,36 +1,39 @@
 name: Terraform CI
 
 on:
-    push:
-        branches:
-            - main
-    pull_request:
-        branches:
-            - main
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
-    terraform:
-        name: 'Management_LZ_Core_Infra'
-        runs-on: ubuntu-latest
+  terraform:
+    name: 'Management_LZ_Core_Infra'
+    runs-on: ubuntu-latest
 
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v2
+    env:
+      AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID || '' }}
+      AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+      AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+      AZURE_STORAGE_ACCOUNT_NAME: ${{ secrets.AZURE_STORAGE_ACCOUNT_NAME }}
+      AZURE_STORAGE_CONTAINER_NAME: ${{ secrets.AZURE_STORAGE_CONTAINER_NAME }}
+      AZURE_STORAGE_ACCESS_KEY: ${{ secrets.AZURE_STORAGE_ACCESS_KEY }}
 
-            - name: Setup Terraform
-              uses: hashicorp/setup-terraform@v1
-              with:
-                    terraform_version: 1.0.0
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-              
-            - name: Terraform Init
-              run: terraform init -backend-config="path=mgt_rg.tfstate"
-              working-directory: ./management_lz/infra
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.9
 
-            - name: Terraform Validate
-              run: terraform validate
-              working-directory: ./management_lz/infra
-
-            - name: Terraform Plan
-              run: terraform plan -out=tfplan -state=mgt_rg.tfstate
-              working-directory: ./management_lz/infra
+      # Use Azure Login action with Service principal secret
+ 
+      - name: Azure Login action
+        uses: azure/login@v2
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          enable-AzPSSession: true    
