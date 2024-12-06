@@ -58,3 +58,8 @@ jobs:
           STORAGE_ACCOUNT_KEY: ${{ secrets.AZURE_STORAGE_ACCESS_KEY }}
           CONTAINER_NAME: ${{ secrets.AZURE_STORAGE_CONTAINER_NAME }}
         run: terraform init -backend-config="storage_account_name=$STORAGE_ACCOUNT" -backend-config="container_name=$CONTAINER_NAME" -backend-config="resource_group_name=$RESOURCE_GROUP" -backend-config="key=mgt.tfstate"
+        
+      - name: Terraform Validate
+        id: validate
+        working-directory: ./management_lz
+        run: terraform validate
