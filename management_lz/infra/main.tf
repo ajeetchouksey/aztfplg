@@ -1,9 +1,9 @@
-
-# Create a resource group for the core infrastructure
+# Create resource groups for the core infrastructure
 module "azurerm_resource_group" {
     source  = "Azure/avm-res-resources-resourcegroup/azurerm"
     version = "0.1.0"
-    name = var.resource_groups
-    location            = var.location
-}
+    for_each = { for rg in var.resource_groups : rg.name => rg }
 
+    name     = each.value.name
+    location = each.value.location
+}
