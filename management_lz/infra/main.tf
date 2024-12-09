@@ -4,6 +4,6 @@ module "azurerm_resource_group" {
     version = "0.1.0"
     for_each = local.resource_groups_name
 
-    name     = each.key
+    name     = each.value
     location = var.location
 }
