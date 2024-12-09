@@ -18,3 +18,8 @@ variable "location" {
     type        = string
     default     = "West Europe"
 }
+
+variable "environment" {
+    description = "The environment to be created"
+    type        = string  
+}
