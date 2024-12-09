@@ -1,9 +1,74 @@
-variable "subscription_id" {
-    description = "The subscription ID for the Azure account."
-    type        = string
+variable "resource_groups" {
+    description = "List of resource groups to be created"
+    type = list(object({        
+        purpose = string
+        location = string 
+    }))
+  
 }
 
-variable "tenant_id" {
-    description = "The tenant ID for the Azure account."
+
+variable "location" {
+    description = "The location where the resources will be created"
     type        = string
+    default     = "West Europe"
 }
+
+variable "environment" {
+    description = "The environment to be created"
+    type        = string  
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
