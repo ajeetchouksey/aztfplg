@@ -1,6 +1,7 @@
 variable "resource_groups" {
     description = "List of resource groups to be created"
     type = list(object({        
+        purpose = string
         location = string 
     }))
   
