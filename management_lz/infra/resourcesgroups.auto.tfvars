@@ -1,5 +1,6 @@
 resource_groups = [
     {
-        name = "rg1"
+        name = "coreinfra"
+        location = "westeurope"
     }
 ]

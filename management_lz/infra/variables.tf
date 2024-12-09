@@ -2,6 +2,7 @@ variable "resource_groups" {
     description = "List of resource groups to be created"
     type = list(object({
         name     = string
+        location = string 
     }))
   
 }
@@ -17,3 +18,57 @@ variable "environment" {
     description = "The environment to be created"
     type        = string  
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
