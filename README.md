@@ -22,3 +22,19 @@ This framework helps organizations to quickly set up and manage their Azure envi
 - **Apply Security Policies**: Use Azure Policy to enforce security standards and compliance requirements.
 - **Automate Deployments**: Use CI/CD pipelines to automate the deployment of your infrastructure and applications.
 - **Regularly Review and Update**: Continuously review and update your infrastructure and policies to adapt to changing requirements and best practices.
+
+
+
+# MAIN.TF Documentation
+
+## Modules
+
+### azurerm_resource_group
+This module is responsible for creating Azure Resource Groups using the `Azure/avm-res-resources-resourcegroup/azurerm` module.
+
+#### Arguments:
+- **source**: Specifies the source of the module, which is `"Azure/avm-res-resources-resourcegroup/azurerm"`.
+- **version**: Specifies the version of the module to use, which is `"0.1.0"`.
+- **for_each**: Iterates over the `local.resource_groups_name` to create multiple resource groups.
+- **name**: The name of the resource group, derived from each value in `local.resource_groups_name`.
+- **location**: The location where the resource group will be created, specified by the `var.location` variable.
