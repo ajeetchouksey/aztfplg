@@ -1,6 +1,6 @@
 locals {
   environment = var.environment
-  landingzone_prefix = "m"
+  landingzone_prefix = "c"
   resource_groups_name = {
     ct_infra_rg = "${local.landingzone_prefix}-ct-infra-rg-${local.environment}-01"  
     # add more resource groups here

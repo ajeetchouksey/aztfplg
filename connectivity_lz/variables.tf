@@ -19,15 +19,6 @@ variable "environment" {
     type        = string  
 }
 
-variable "log_analytics_workspaces" {
-    description = "List of Log Analytics workspaces to be created"
-    type = list(object({
-        location            = string
-        resource_group_id = number
-        sku                 = string
-    }))
-}
-
 
 
 
