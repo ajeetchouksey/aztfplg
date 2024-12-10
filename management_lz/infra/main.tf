@@ -15,7 +15,7 @@ module "azurerm_log_analytics_workspace" {
     for_each = { for idx, law in var.log_analytics_workspaces : idx => law }
 
     name                = local.log_analytics_workspace_names[each.key]
-   # log_analytics_workspace_identity = each.value.identity
+    log_analytics_workspace_identity = var.log_analytics_workspace_identity
     location            = each.value.location
-    resource_group_name = module.azurerm_resource_group[each.value.resource_group_id].name
+    resource_group_name = module.azurerm_resource_group[0].name
 }
