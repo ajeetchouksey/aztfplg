@@ -17,4 +17,6 @@ locals {
     # add more subnets here
   }
 
+  log_analytics_workspace_names = [for idx in range(length(var.log_analytics_workspaces)) : "${local.landingzone_prefix}-core-infra-law-${local.environment}-${idx}"]
+
 }
