@@ -27,7 +27,7 @@ module "azurerm_resource_group" {
 # - resource_group_name: The name of the resource group where the Log Analytics workspace will be created, specified by the var.resource_group_name variable.
 module "azurerm_log_analytics_workspace" {
     source  = "Azure/avm-res-operationalinsights-workspace/azurerm"
-    version = "0.1.0"
+    version = "0.4.2"
 
     name                = var.log_analytics_workspace_name
     location            = var.location
