@@ -1,22 +1,22 @@
-name: Management CI
+name: Azure Policy CI
 
 on:
   push:
     branches:
       - main
     paths:
-      - 'management_lz/**'
-      - '.github/workflows/mgt_core.yml'
+      - 'policy/**'
+      - '.github/workflows/policy.yml'
   pull_request:
     branches:
       - main
     paths:
-      - 'management_lz/**'
-      - '.github/workflows/mgt_core.yml'
+      - 'policy/**'
+      - '.github/workflows/policy.yml'
 
 jobs:
   terraform:
-    name: 'management_lz_Core_Infra'
+    name: 'Policy Infra'
     runs-on: ubuntu-latest
 
     env:
@@ -47,7 +47,7 @@ jobs:
       # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
       - name: Terraform Init
         id: init
-        working-directory: ./management_lz
+        working-directory: ./policy
         env:
           ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
           ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
@@ -57,30 +57,30 @@ jobs:
           STORAGE_ACCOUNT: ${{ secrets.AZURE_STORAGE_ACCOUNT_NAME }}
           STORAGE_ACCOUNT_KEY: ${{ secrets.AZURE_STORAGE_ACCESS_KEY }}
           CONTAINER_NAME: ${{ secrets.AZURE_STORAGE_CONTAINER_NAME }}
-        run: terraform init -backend-config="storage_account_name=$STORAGE_ACCOUNT" -backend-config="container_name=$CONTAINER_NAME" -backend-config="resource_group_name=$RESOURCE_GROUP" -backend-config="key=mgt.tfstate"
+        run: terraform init -backend-config="storage_account_name=$STORAGE_ACCOUNT" -backend-config="container_name=$CONTAINER_NAME" -backend-config="resource_group_name=$RESOURCE_GROUP" -backend-config="key=policy.tfstate"
         
       - name: Terraform Validate
         id: validate
-        working-directory: ./management_lz
+        working-directory: ./policy
         run: terraform validate 
-
+# terrafrom plan 
       - name: Terraform Plan
         id: plan
-        working-directory: ./management_lz
+        working-directory: ./policy
         env:
-          ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
-          ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
-          ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
-          ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+            ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+            ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+            ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+            ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
         run: terraform plan -var 'environment=dev'
 
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main'
         id: apply
-        working-directory: ./management_lz
+        working-directory: ./policy
         env:
-          ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
-          ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
-          ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
-          ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+            ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+            ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+            ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+            ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
         run: terraform apply -auto-approve -var 'environment=dev'

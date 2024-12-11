@@ -1,6 +1,6 @@
 resource_groups = [
     {      
-        purpose = "core_infra_rg"
+        purpose = "connectivity_infra_rg"
         location = "westeurope"
     }
 ]

@@ -1,10 +1,21 @@
 locals {
   environment = var.environment
   landingzone_prefix = "m"
-  resource_groups_name = {
-    core_infra_rg = "${local.landingzone_prefix}-core-infra-rg-${local.environment}-01"  
-    # add more resource groups here
-  }
+
+  resource_groups_name = [
+    for rg in var.resource_groups : {
+      name = "${local.landingzone_prefix}-core-infra-rg-${local.environment}-${rg.id}"
+      location = rg.location
+    }
+  ]
+          
+  log_analytics_workspace_names = [
+    for  name in var.log_analytics_workspaces : {
+      name = "${local.landingzone_prefix}-core-infra-law-${local.environment}-${name.id}"
+    }   
+  ]
+
+  
 
   core_infra_vnets = {
     core_infra_vnet = "${local.landingzone_prefix}-core-infra-vnet-${local.environment}-01"    
@@ -16,5 +27,7 @@ locals {
     res_subnet = "${local.landingzone_prefix}-core-infra-res-subnet-${local.environment}-01"    
     # add more subnets here
   }
+
+ 
 
 }
