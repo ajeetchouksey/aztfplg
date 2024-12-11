@@ -3,17 +3,16 @@ locals {
   landingzone_prefix = "m"
 
   resource_groups_name = [
-    for idx, rg in var.resource_groups : {
-      name = "${local.landingzone_prefix}-core-infra-rg-${local.environment}-${rg.idx}"
+    for rg in var.resource_groups : {
+      name = "${local.landingzone_prefix}-core-infra-rg-${local.environment}-${rg.id}"
       location = rg.location
     }
   ]
           
   log_analytics_workspace_names = [
-    for idx, name in var.log_analytics_workspaces : {
-      name = "${local.landingzone_prefix}-core-infra-law-${local.environment}-${idx}"
-    }
-   
+    for  name in var.log_analytics_workspaces : {
+      name = "${local.landingzone_prefix}-core-infra-law-${local.environment}-${name.id}"
+    }   
   ]
 
   
