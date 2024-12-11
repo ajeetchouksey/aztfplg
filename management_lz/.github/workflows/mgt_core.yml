@@ -32,7 +32,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
         with:
-         path: ./management_lz/.github/workflows
+         path: ./management_lz/.github/workflows/mgt_core.yml
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
@@ -49,7 +49,7 @@ jobs:
       # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
       - name: Terraform Init
         id: init
-        working-directory: ./management_lz/infra
+        working-directory: ./management_lz
         env:
           ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
           ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
@@ -68,7 +68,7 @@ jobs:
 # terrafrom plan 
       - name: Terraform Plan
         id: plan
-        working-directory: ./management_lz/infra
+        working-directory: ./management_lz
         env:
             ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
             ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
@@ -79,7 +79,7 @@ jobs:
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main'
         id: apply
-        working-directory: ./management_lz/infra
+        working-directory: ./management_lz
         env:
             ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
             ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
