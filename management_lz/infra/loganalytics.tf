@@ -2,7 +2,7 @@
 data "azurerm_resource_group" "rginfo" {
     for_each = { for idx, rg in var.resource_groups : idx => rg }
 
-    name = local.resource_groups_name
+    name = each.key
 }
 
 # Create Log Analytics workspaces
