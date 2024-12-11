@@ -2,11 +2,11 @@
 data "azurerm_resource_group" "rginfo" {
     for_each = { for idx, rg in var.resource_groups : idx => rg }
 
-    name = local.resource_groups_name[each.value.purpose]
+    name = local.resource_groups_name
 }
 
 # Create Log Analytics workspaces
-module "azurerm_log_analytics_workspace" {
+/* module "azurerm_log_analytics_workspace" {
     source = "git::https://github.com/Azure/terraform-azurerm-avm-res-operationalinsights-workspace.git?ref=1600b5831873ca127723368e35aba380a7e061e3"
     # version = "0.4.2"
     for_each = { for idx, law in var.log_analytics_workspaces : idx => law }
@@ -21,4 +21,4 @@ module "azurerm_log_analytics_workspace" {
         type =each.value.log_analytics_workspace.identity
     }
     depends_on = [data.azurerm_resource_group.rginfo]
-}
+} */
