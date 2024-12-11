@@ -1,4 +1,4 @@
-
+/* 
 data "azurerm_resource_group" "rginfo" {
     for_each = { for rg in local.resource_groups_name : rg.name => rg }
 
@@ -22,4 +22,4 @@ module "azurerm_log_analytics_workspace" {
         type         = each.value.identity
     }
     depends_on = [data.azurerm_resource_group.rginfo]
-}
+} */
