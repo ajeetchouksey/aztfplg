@@ -3,8 +3,8 @@ locals {
   landingzone_prefix = "m"
 
   resource_groups_name = [
-    for rg in var.resource_groups : {
-      name = "${local.landingzone_prefix}-core-infra-rg-${local.environment}-${rg.id}"
+    for idx, rg in var.resource_groups : {
+      name = "${local.landingzone_prefix}-core-infra-rg-${local.environment}-${rg.idx}"
       location = rg.location
     }
   ]
