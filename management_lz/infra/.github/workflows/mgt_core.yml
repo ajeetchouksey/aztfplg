@@ -31,6 +31,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        with:
+         path: ./management_lz/.github/workflows
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
