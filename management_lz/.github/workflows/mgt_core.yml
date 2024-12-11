@@ -32,7 +32,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
         with:
-         path: ./management_lz/.github/workflows/mgt_core.yml
+         path: management_lz/.github/workflows/mgt_core.yml
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
