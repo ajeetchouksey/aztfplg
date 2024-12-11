@@ -7,4 +7,3 @@ module "azurerm_resource_group" {
     name     = local.resource_groups_name[each.value.purpose]
     location = each.value.location
 }
-
