@@ -8,7 +8,7 @@ locals {
       location = rg.location
     }
   ]
-           # add more resource groups here
+          
   
 
   
