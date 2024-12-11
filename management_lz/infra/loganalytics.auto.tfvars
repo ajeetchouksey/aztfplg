@@ -1,5 +1,6 @@
 log_analytics_workspaces = [
     {
+        id = "01"
         location            = "westeurope"
         resource_group_id = 1
         sku = "PerGB2018"
