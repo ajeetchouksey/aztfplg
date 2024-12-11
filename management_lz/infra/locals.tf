@@ -1,12 +1,15 @@
 locals {
   environment = var.environment
   landingzone_prefix = "m"
+
   resource_groups_name = [
-    {
-      name = "${local.landingzone_prefix}-core-infra-rg-${local.environment}-01"  
+    for rg in var.resource_groups : {
+      name = "${local.landingzone_prefix}-core-infra-rg-${local.environment}-${rg.id}"
+      location = rg.location
     }
-        # add more resource groups here
-  ]   
+  ]
+           # add more resource groups here
+  
 
   
 

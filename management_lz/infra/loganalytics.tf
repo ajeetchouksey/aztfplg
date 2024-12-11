@@ -1,9 +1,9 @@
 
-data "azurerm_resource_group" "rginfo" {
+/* data "azurerm_resource_group" "rginfo" {
     for_each = { for idx, rg in local.resource_groups_name : idx => rg }
 
     name = each.key
-}
+} */
 
 /* # Create Log Analytics workspaces
  module "azurerm_log_analytics_workspace" {
