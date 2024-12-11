@@ -16,7 +16,7 @@ on:
 
 jobs:
   terraform:
-    name: 'Management_LZ_Core_Infra'
+    name: 'management_lz_Core_Infra'
     runs-on: ubuntu-latest
 
     env:
