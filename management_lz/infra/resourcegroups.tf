@@ -2,8 +2,8 @@
 module "azurerm_resource_group" {
     source  = "Azure/avm-res-resources-resourcegroup/azurerm"
     version = "0.1.0"
-    for_each = { for idx, rg in var.resource_groups : idx => rg }
+    for_each = { for idx, rg in local.resource_groups_name : idx => rg }
 
-    name     = local.resource_groups_name[each.value.purpose]
+    name     = each.key
     location = each.value.location
 }
