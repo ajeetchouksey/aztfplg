@@ -6,4 +6,5 @@ module "azurerm_resource_group" {
 
     name     = each.value.name
     location = each.value.location
+    tags = local.tags
 }

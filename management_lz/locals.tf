@@ -2,6 +2,13 @@ locals {
   environment = var.environment
   landingzone_prefix = "m"
 
+  tags = {
+    environment = var.environment
+    landingzone= "management"
+    project = "TF Playground" 
+    last_updated = formatdate("YYYY-MM-DD", timestamp())
+  }
+
   resource_groups_name = [
     for rg in var.resource_groups : {
       name = "${local.landingzone_prefix}-core-infra-rg-${local.environment}-${rg.id}"
