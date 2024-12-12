@@ -1,9 +1,7 @@
 name: Management CI
 
 on:
-  push:
-    branches:
-      - main
+  push:    
     paths:
       - 'management_lz/**'
       - '.github/workflows/mgt_core.yml'
