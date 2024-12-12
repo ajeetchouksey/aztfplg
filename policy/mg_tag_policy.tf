@@ -6,28 +6,13 @@ resource "azurerm_management_group" "root" {
     name = "ajch_mgt_grp_01"
 }
 
-module "assign_policy_at_management_group" {
-    source  = "Azure/terraform-azurerm-avm-ptn-policyassignment/azurerm"
-    
-    policy_definitions = {
-        "tag-policy" = {
-            display_name = "Tag Policy"
-            description  = "This policy ensures that all indexed resources are tagged with a value for a specific tag."
-            policy_rule  = <<POLICY_RULE
-            {
-                "if": {
-                    "allOf": [
-                        {
-                            "field": "tags['project']",
-                            "exists": "false"
-                        }
-                    ]
-                },
-                "then": {
-                    "effect": "deny"
-                }
-            }
-            POLICY_RULE
-        }
+module "avm-ptn-policyassignment" {
+    source  = "Azure/avm-ptn-policyassignment/azurerm"
+    location = "westeurope"
+    policy_definition_id = "/providers/Microsoft.Authorization/policyDefinitions/726aca4c-86e9-4b04-b0c5-073027359532"
+    scope = azurerm_management_group.root.id
+    display_name = "Add a tag to resource groups"
+    parameters = {
+        project = "TF Playgound"
     }
 }
