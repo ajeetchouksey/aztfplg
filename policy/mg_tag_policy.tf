@@ -3,7 +3,7 @@ provider "azurerm" {
 }
 
 resource "azurerm_management_group" "root" {
-  name = "ajch_mgt_grp_01"
+    name = "ajch_mgt_grp_01"
 }
 
 module "assign_policy_at_management_group" {
@@ -12,22 +12,23 @@ module "assign_policy_at_management_group" {
     
     policy_definitions = {
         "tag-policy" = {
-        display_name = "Tag Policy"
-        description  = "This policy ensures that all indexed resources are tagged with a value for a specific tag."
-        policy_rule  = <<POLICY_RULE
+            display_name = "Tag Policy"
+            description  = "This policy ensures that all indexed resources are tagged with a value for a specific tag."
+            policy_rule  = <<POLICY_RULE
             {
-            "if": {
-                "allOf": [
-                {
-                    "field": "tags['project']",
-                    "exists": "false"
+                "if": {
+                    "allOf": [
+                        {
+                            "field": "tags['project']",
+                            "exists": "false"
+                        }
+                    ]
+                },
+                "then": {
+                    "effect": "deny"
                 }
-                ]
-            },
-            "then": {
-                "effect": "deny"
-            }
             }
             POLICY_RULE
-            }
+        }
     }
+}
