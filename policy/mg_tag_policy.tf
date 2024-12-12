@@ -2,28 +2,40 @@ provider "azurerm" {
     features {}
 }
 
-module "management_group" {
- 
-   source  = "Azure/avm-ptn-policyassignment/azurerm"
-   version = "0.1.0"
+resource "azurerm_management_group" "root" {
+  name = "test-mg"
+}
 
-   location = "West Europe" # Add the required location attribute
-   policy_definition_id = "/providers/Microsoft.Authorization/policyDefinitions/d157c373-a6c4-483d-aaad-570756956268"
-   scope = "/providers/Microsoft.Management/managementGroups/ajch_mgt_grp_01" # Add the required scope attribute
+provider "azurerm" {
+    features {}
 }
-resource "azurerm_resource_policy_assignment" "tag_policy_assignment" {
-    name                 = "tag-policy-assignment"
-    resource_id          = module.management_group.management_group_id
-    policy_definition_id = module.management_group.policy_definition_id
-    location             = module.management_group.location
-    display_name         = "Enforce Tag Policy"
-    description          = "This policy enforces the use of the 'project' tag with the value 'TF Playground'."
-    parameters = jsonencode({
-        tagName = {
-            value = "project"
-        }
-        tagValue = {
-            value = "TF Playground"
-        }
-    })
+
+resource "azurerm_management_group" "root" {
+  name = "ajch_mgt_grp_01"
 }
+
+module "assign_policy_at_management_group" {
+    source  = "Azure/terraform-azurerm-avm-ptn-policyassignment"
+    version = "0.1.0"
+    
+    policy_definitions = {
+        "tag-policy" = {
+        display_name = "Tag Policy"
+        description  = "This policy ensures that all indexed resources are tagged with a value for a specific tag."
+        policy_rule  = <<POLICY_RULE
+            {
+            "if": {
+                "allOf": [
+                {
+                    "field": "tags['project']",
+                    "exists": "false"
+                }
+                ]
+            },
+            "then": {
+                "effect": "deny"
+            }
+            }
+            POLICY_RULE
+            }
+    }
