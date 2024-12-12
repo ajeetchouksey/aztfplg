@@ -5,12 +5,7 @@ on:
     paths:
       - 'management_lz/**'
       - '.github/workflows/mgt_core.yml'
-  pull_request:
-    branches:
-      - main
-    paths:
-      - 'management_lz/**'
-      - '.github/workflows/mgt_core.yml'
+
 
 jobs:
   deploy_to_prod:
