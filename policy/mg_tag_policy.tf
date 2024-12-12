@@ -8,7 +8,6 @@ resource "azurerm_management_group" "root" {
 
 module "assign_policy_at_management_group" {
     source  = "Azure/terraform-azurerm-avm-ptn-policyassignment/azurerm"
-    version = "0.1.0"
     
     policy_definitions = {
         "tag-policy" = {
