@@ -3,19 +3,11 @@ provider "azurerm" {
 }
 
 resource "azurerm_management_group" "root" {
-  name = "test-mg"
-}
-
-provider "azurerm" {
-    features {}
-}
-
-resource "azurerm_management_group" "root" {
   name = "ajch_mgt_grp_01"
 }
 
 module "assign_policy_at_management_group" {
-    source  = "Azure/terraform-azurerm-avm-ptn-policyassignment"
+    source  = "Azure/terraform-azurerm-avm-ptn-policyassignment/azurerm"
     version = "0.1.0"
     
     policy_definitions = {
