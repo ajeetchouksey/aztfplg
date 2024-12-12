@@ -6,9 +6,9 @@ module "management_group" {
     source  = "Azure/avm/azurerm"
     version = "2.0.0"
 
-    root_parent_id = "00000000-0000-0000-0000-000000000000" # Replace with your root parent ID
-    root_id        = "example-mg"
-    root_name      = "Example Management Group"
+    root_parent_id = "f349b7a1-b209-4595-b331-63e27b9a4446" # Replace with your root parent ID
+    root_id        = "ajch_mgt_grp_01"
+    root_name      = "ajch_mgt_grp_01"
 }
 
 resource "azurerm_policy_definition" "tag_policy" {
@@ -38,7 +38,7 @@ resource "azurerm_policy_definition" "tag_policy" {
             "type": "String",
             "metadata": {
                 "description": "Name of the tag, such as 'environment'",
-                "displayName": "Tag Name"
+                "displayName": "Project"
             }
         }
     }
@@ -54,7 +54,7 @@ resource "azurerm_policy_assignment" "tag_policy_assignment" {
     parameters = <<PARAMETERS
     {
         "tagName": {
-            "value": "environment"
+            "value": "TF Playground"
         }
     }
     PARAMETERS
