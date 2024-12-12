@@ -1,7 +1,3 @@
-provider "azurerm" {
-    features {}
-}
-
 resource "azurerm_management_group" "root" {
     name = "ajch_mgt_grp_01"
 }
