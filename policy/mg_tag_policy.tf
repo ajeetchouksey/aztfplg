@@ -9,11 +9,11 @@ module "management_group" {
 
    location = "West Europe" # Add the required location attribute
    policy_definition_id = "/providers/Microsoft.Authorization/policyDefinitions/d157c373-a6c4-483d-aaad-570756956268"
-   scope = "" # Add the required scope attribute
+   scope = "/providers/Microsoft.Management/managementGroups/ajch_mgt_grp_01" # Add the required scope attribute
 }
-resource "azurerm_policy_assignment" "tag_policy_assignment" {
+resource "azurerm_resource_policy_assignment" "tag_policy_assignment" {
     name                 = "tag-policy-assignment"
-    scope                = module.management_group.management_group_id
+    resource_id          = module.management_group.management_group_id
     policy_definition_id = module.management_group.policy_definition_id
     location             = module.management_group.location
     display_name         = "Enforce Tag Policy"
