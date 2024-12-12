@@ -13,6 +13,8 @@ module "avm-ptn-policyassignment" {
     scope = azurerm_management_group.root.id
     display_name = "Add a tag to resource groups"
     parameters = {
-        project = "TF Playgound"
+        project = {
+            value = "TF Playgound"
+        }
     }
 }
