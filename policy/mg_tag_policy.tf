@@ -3,16 +3,22 @@ resource "azurerm_management_group" "root" {
 }
 
 module "avm-ptn-policyassignment" {
-    source  = "Azure/avm-ptn-policyassignment/azurerm"
-    location = "westeurope"
-    policy_definition_id = "/providers/Microsoft.Authorization/policyDefinitions/726aca4c-86e9-4b04-b0c5-073027359532"
-    scope = azurerm_management_group.root.id
-    display_name = "Add a tag to resource groups"
+    source                = "Azure/avm-ptn-policyassignment/azurerm"
+    location              = "westeurope"
+    policy_definition_id  = "/providers/Microsoft.Authorization/policyDefinitions/726aca4c-86e9-4b04-b0c5-073027359532"
+    scope                 = azurerm_management_group.root.id
+    display_name          = "Add a tag to resource groups"
+    
+    role_assignments = {
+        contrib = {
+            role_definition_id_or_name = "Contributor"
+            principal_id               = "ignored"
+        }
+    }
+    
     parameters = {
         project = {
             value = "TF Playgound"
         }
     }
 }
-
-
