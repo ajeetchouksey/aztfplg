@@ -67,8 +67,3 @@ variable "environment" {
 
 
 
-
-
-
-
-
