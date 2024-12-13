@@ -2,7 +2,7 @@
 
 # Create VNETs using the AVM module
 module "azurerm_virtual_network" {
-    source  = "Azure/avm-res-network-virtualnetwork"
+    source  = "Azure/avm-res-network-virtualnetwork/azurerm"
     version = "0.7.1"
     for_each = { for idx, vnet in var.vnet_configs : idx => vnet }
 
