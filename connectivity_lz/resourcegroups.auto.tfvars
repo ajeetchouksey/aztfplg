@@ -1,6 +1,8 @@
 resource_groups = [
     {      
-        purpose = "connectivity_infra_rg"
+        id = "01"
         location = "westeurope"
     }
+
+    # add more resource groups here
 ]
