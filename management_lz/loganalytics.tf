@@ -1,4 +1,4 @@
-/* 
+
 data "azurerm_resource_group" "rginfo" {
     for_each = { for rg in local.resource_groups_name : rg.name => rg }
 
@@ -18,8 +18,10 @@ module "azurerm_log_analytics_workspace" {
     log_analytics_workspace_internet_ingestion_enabled = each.value.log_analytics_workspace_internet_ingestion_enabled
     log_analytics_workspace_internet_query_enabled     = each.value.log_analytics_workspace_internet_query_enabled
     log_analytics_workspace_identity = {
-        identity_ids = ["43d09976-1ab4-462c-8d2d-c480d070cfa6"]
+        identity_ids = ["7d74bbca-838b-4105-86d3-05a08c1c5490"]
         type         = each.value.identity
     }
-    depends_on = [data.azurerm_resource_group.rginfo]
-} */
+   
+} 
+
+
