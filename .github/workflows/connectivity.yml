@@ -1,8 +1,8 @@
 name: Connectivity Landing Zone CI
 
 on:
-    pull_request:
-      paths:
+  push:    
+    paths:
         - 'connectivity_lz/**'
         - '.github/workflows/connectivity.yml'
 
