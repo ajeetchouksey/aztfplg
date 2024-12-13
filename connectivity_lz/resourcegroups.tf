@@ -7,4 +7,5 @@ module "azurerm_resource_group" {
     name     = module.naming.resource_group
     location = each.value.location
     tags = local.tags
+    depends_on = [ module.naming ]
 }
