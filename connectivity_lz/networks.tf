@@ -15,4 +15,5 @@ module "azurerm_virtual_network" {
     resource_group_name = data.azurerm_resource_group.existing_rg[each.value.resource_group_index].name
   
     tags                = local.tags
+    depends_on = [ module.azurerm_resource_group, data.azurerm_resource_group.existing_rg ]
 }
