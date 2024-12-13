@@ -2,9 +2,9 @@
 module "azurerm_resource_group" {
     source  = "Azure/avm-res-resources-resourcegroup/azurerm"
     version = "0.1.0"
-    for_each = { for idx, rg in local.resource_groups_name : idx => rg }
+    for_each = { for idx, rg in var.resource_groups : idx => rg }
 
-    name     = each.value.name
+    name     = "${local.landingzone_prefix}-core-infra-rg-${local.environment}-${rg.id}"
     location = each.value.location
     tags = local.tags
 }
