@@ -9,16 +9,12 @@ module "avm-ptn-policyassignment" {
     scope                 = azurerm_management_group.root.id
     display_name          = "Add a tag to resource groups"
     
-    role_assignments = {
-        contrib = {
-            role_definition_id_or_name = "Contributor"
-            principal_id               = "ignored"
-        }
-    }
     
     parameters = {
         project = {
             value = "TF Playgound"
         }
     }
+
+    role_assignments = {}
 }
