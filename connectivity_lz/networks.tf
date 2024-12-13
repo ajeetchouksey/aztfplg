@@ -1,5 +1,5 @@
 
-data "azurerm_resource_groups" "existing_rg" {
+data "azurerm_resource_group" "existing_rg" {
     for_each = { for rg in var.resource_groups : rg.id => rg }
     name     = "${local.landingzone_prefix}-core-infra-rg-${local.environment}-${each.value.id}"
 }
