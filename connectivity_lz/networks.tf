@@ -10,7 +10,7 @@ module "azurerm_virtual_network" {
     version = "0.1.0"
     for_each = { for idx, vnet in var.vnet_configs : idx => vnet }
 
-    name     = "${local.landingzone_prefix}-core-infra-vnet-${local.environment}-${each.value.id}"
+    name     = "${local.landingzone_prefix}-core-infra-vnet-${local.environment}-${each.value.vnet_id}"
     address_space       = each.value.address_space
     resource_group_name = data.azurerm_resource_group.existing_rg[each.value.resource_group_index].name
   
