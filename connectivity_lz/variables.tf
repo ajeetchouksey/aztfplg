@@ -6,6 +6,15 @@ variable "resource_groups" {
     }))
   
 }
+variable "vnet_configs" {
+    description = "List of VNETs to be created"
+    type = list(object({        
+        vnet_id = string
+        address_space = list(string)       
+        resource_group_index = string
+    }))
+  
+}
 
 variable "location" {
     description = "The location where the resources will be created"
