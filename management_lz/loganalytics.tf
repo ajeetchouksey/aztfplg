@@ -13,7 +13,7 @@ module "azurerm_log_analytics_workspace" {
     name                = module.naming.log_analytics_workspace.each.value.id
     location            = each.value.location
     log_analytics_workspace_sku = each.value.sku
-    resource_group_name = data.azurerm_resource_group.rginfo[each.value.id].name
+    resource_group_name = data.azurerm_resource_group.rginfo[each.value. resource_group_id].name
     log_analytics_workspace_retention_in_days          = each.value.retention_in_days
     log_analytics_workspace_internet_ingestion_enabled = each.value.log_analytics_workspace_internet_ingestion_enabled
     log_analytics_workspace_internet_query_enabled     = each.value.log_analytics_workspace_internet_query_enabled
