@@ -1,8 +1,4 @@
 
-data "azurerm_resource_group" "existing_rg" {
-    for_each = { for rg in var.resource_groups : rg.id => rg }
-    name     = "${local.landingzone_prefix}-core-infra-rg-${local.environment}-${each.value.id}"
-}
 
 # Create VNETs using the AVM module
 module "azurerm_virtual_network" {
@@ -12,8 +8,8 @@ module "azurerm_virtual_network" {
 
     name     = "${local.landingzone_prefix}-core-infra-vnet-${local.environment}-${each.value.vnet_id}"
     address_space       = each.value.address_space
-    resource_group_name = data.azurerm_resource_group.existing_rg[each.value.resource_group_index].name
+    resource_group_name = module.azurerm_resource_group[each.value.resource_group_index].name
   
     tags                = local.tags
-    depends_on = [ module.azurerm_resource_group, data.azurerm_resource_group.existing_rg ]
+    depends_on = [ module.azurerm_resource_group ]
 }
