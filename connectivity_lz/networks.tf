@@ -12,7 +12,7 @@ module "azurerm_virtual_network" {
 
     name     = "${local.landingzone_prefix}-core-infra-vnet-${local.environment}-${each.value.id}"
     address_space       = each.value.address_space
-    resource_group_name = data.azurerm_resource_groups.existing_rg[each.value.resource_group_index].name
+    resource_group_name = data.azurerm_resource_group.existing_rg[each.value.resource_group_index].name
   
     tags                = local.tags
 }
