@@ -17,8 +17,7 @@ module "azurerm_log_analytics_workspace" {
     log_analytics_workspace_retention_in_days          = each.value.retention_in_days
     log_analytics_workspace_internet_ingestion_enabled = each.value.log_analytics_workspace_internet_ingestion_enabled
     log_analytics_workspace_internet_query_enabled     = each.value.log_analytics_workspace_internet_query_enabled
-    log_analytics_workspace_identity = {
-        identity_ids = ["7d74bbca-838b-4105-86d3-05a08c1c5490"]
+    log_analytics_workspace_identity = {        
         type         = each.value.identity
     }
    
