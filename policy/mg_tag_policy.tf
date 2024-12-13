@@ -18,7 +18,7 @@ module "avm-ptn-policyassignment" {
 
     role_assignments = {
         ra = {
-            role_definition_name = "Contributor"
+            role_definition_id_or_name = "Contributor"
             principal_id         = "7d74bbca-838b-4105-86d3-05a08c1c5490"
             // Do not set principal_type here
         }
