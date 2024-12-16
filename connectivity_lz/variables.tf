@@ -27,6 +27,18 @@ variable "environment" {
     type        = string  
 }
 
+variable "subscription_id" {
+    description = "The subscription ID to be used"
+    type        = string
+  
+}
+
+variable "tenant_id" {
+    description = "The tenant ID to be used"
+    type        = string
+  
+}
+
 
 
 
