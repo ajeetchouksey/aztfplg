@@ -5,5 +5,6 @@ vnet_configs = [
         address_space       = ["10.0.0.0/16"]
         resource_group_index = 0
     }
+    # add more VNETs here
 ]
 
