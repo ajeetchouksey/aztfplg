@@ -1,5 +1,5 @@
 data "azurerm_resource_group" "all" {
-    name = module.azurerm_resource_group.name
+    name = module.azurerm_resource_group
     
 }
 # Create Log Analytics workspaces
