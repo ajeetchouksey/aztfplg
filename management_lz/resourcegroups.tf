@@ -5,7 +5,7 @@ module "azurerm_resource_group" {
     #version = "0.1.0"
     for_each = { for idx, rg in var.resource_groups : idx => rg }
 
-    name     = "${local.landingzone_prefix}-${each.value.purpose}-${local.environment}-rg-${each.value.id}"
+    name     = "${local.landingzone_prefix}-${local.environment}-${each.value.purpose}-${each.value.id}"
     location = each.value.location
     tags = local.tags
 }
