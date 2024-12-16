@@ -1,4 +1,7 @@
-
+data "azurerm_resource_groups" "all" {
+    name = module.azurerm_resource_groups.name
+    
+}
 # Create Log Analytics workspaces
 module "azurerm_log_analytics_workspace" {
     source = "git::https://github.com/Azure/terraform-azurerm-avm-res-operationalinsights-workspace.git?ref=1600b5831873ca127723368e35aba380a7e061e3"
@@ -6,8 +9,8 @@ module "azurerm_log_analytics_workspace" {
     for_each = { for idx, law in var.log_analytics_workspaces : idx => law }
 
     name               = "${local.landingzone_prefix}-core-infra-${local.environment}-la-${each.value.id}"
-    resource_group_name = module.azurerm_resource_group[each.value.resource_group_index].name    
-    location            =  module.azurerm_resource_group[each.value.resource_group_index].location  
+    resource_group_name = data.azurerm_resource_groups.all[1].name
+    location            =  var.location  
     log_analytics_workspace_sku = each.value.sku
     log_analytics_workspace_retention_in_days          = each.value.retention_in_days
     log_analytics_workspace_internet_ingestion_enabled = each.value.log_analytics_workspace_internet_ingestion_enabled
