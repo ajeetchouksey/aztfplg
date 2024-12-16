@@ -1,6 +1,6 @@
 data "azurerm_resource_group" "all" {
     name = module.azurerm_resource_group[1].name
-    
+    depends_on = [ module.azurerm_resource_group ]
 }
 # Create Log Analytics workspaces
 module "azurerm_log_analytics_workspace" {
