@@ -10,7 +10,7 @@ variable "vnet_configs" {
     description = "List of VNETs to be created"
     type = list(object({        
         vnet_id = string
-        address_space = string      
+        address_space = list(string)      
         resource_group_index = number
     }))
   
