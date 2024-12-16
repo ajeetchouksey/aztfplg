@@ -11,7 +11,7 @@ variable "vnet_configs" {
     type = list(object({        
         vnet_id = string
         address_space = string      
-        resource_group_index = string
+        resource_group_index = number
     }))
   
 }
