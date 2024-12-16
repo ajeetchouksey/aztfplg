@@ -1,4 +1,4 @@
-data "azurerm_resource_groups" "all" {
+data "azurerm_resource_group" "all" {
     name = module.azurerm_resource_groups.name
     
 }
