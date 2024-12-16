@@ -1,11 +1,20 @@
 # Create resource groups for the core infrastructure
 module "azurerm_resource_group" {
+    # Source of the module to create resource groups
     source  = "Azure/avm-res-resources-resourcegroup/azurerm"
-    #source = "git::https://github.com/ajeetchouksey/terraform-azurerm-avm-res-resources-resourcegroup.git?ref=dddeccef94dc5bd011c97cd8c8a9cdb7921dde5c"
+    
+    # Version of the module to use
     version = "0.1.0"
+    
+    # Iterate over each resource group defined in the variable
     for_each = { for idx, rg in var.resource_groups : idx => rg }
 
+    # Define the name of the resource group
     name     = "${local.landingzone_prefix}-${local.environment}-${each.value.purpose}-${each.value.id}"
+    
+    # Set the location for the resource group
     location = each.value.location
+    
+    # Set the tags for the resource group
     tags = local.tags
 }
