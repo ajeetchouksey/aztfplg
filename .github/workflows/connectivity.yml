@@ -1,18 +1,10 @@
 name: Connectivity Landing Zone CI
 
 on:
-  push:
-    branches:
-      - main
+  push:    
     paths:
-      - 'connectivity_lz/**'
-      - '.github/workflows/connectivity.yml'
-  pull_request:
-    branches:
-      - main
-    paths:
-      - 'connectivity_lz/**'
-      - '.github/workflows/connectivity.yml'
+        - 'connectivity_lz/**'
+        - '.github/workflows/connectivity.yml'
 
 jobs:
   terraform:
@@ -31,8 +23,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-        with:
-         path: ./connectivity_lz/.github/workflows
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
@@ -65,7 +55,7 @@ jobs:
         id: validate
         working-directory: ./connectivity_lz
         run: terraform validate 
-# terrafrom plan 
+       # terrafrom plan 
       - name: Terraform Plan
         id: plan
         working-directory: ./connectivity_lz
@@ -74,7 +64,7 @@ jobs:
             ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
             ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
             ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-        run: terraform plan -var 'environment=dev'
+        run: terraform plan -var 'environment=p' -var 'subscription_id=${{ secrets.AZURE_SUBSCRIPTION_ID }}' -var 'tenant_id=${{ secrets.AZURE_TENANT_ID }}'
 
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main'
@@ -85,4 +75,4 @@ jobs:
             ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
             ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
             ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-        run: terraform apply -auto-approve -var 'environment=dev'
+        run: terraform apply -auto-approve -var 'environment=p' -var 'subscription_id=${{ secrets.AZURE_SUBSCRIPTION_ID }}' -var 'tenant_id=${{ secrets.AZURE_TENANT_ID }}'

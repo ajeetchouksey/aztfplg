@@ -1,21 +1,22 @@
 terraform {
     backend "azurerm" {}
-
+    required_version = ">= 1.9.2"
     required_providers {
-        azurerm = {
-            source  = "hashicorp/azurerm"
-            version = "=3.81.0"
-        }
-        random = {
-            source  = "hashicorp/random"
-            version = "=3.5.1"
-        }
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "< 4.0.0, < 5.0.0"
+    }
+
+    random = {
+      source  = "hashicorp/random"
+      version = ">= 3.5.0, < 4.0.0"
+    }
     }
 }
 
 provider "azurerm" {
     features {}
-    subscription_id            = "5e46e350-0c43-434d-8ba5-8888b9017003"
-    tenant_id                  = "f349b7a1-b209-4595-b331-63e27b9a4446"
+    subscription_id            = var.subscription_id 
+    tenant_id                  = var.tenant_id 
     skip_provider_registration = true
 }

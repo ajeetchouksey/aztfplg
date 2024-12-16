@@ -2,6 +2,7 @@ variable "resource_groups" {
     description = "List of resource groups to be created"
     type = list(object({        
         id = string
+        purpose = string
         location = string 
     }))
   
@@ -34,7 +35,17 @@ variable "log_analytics_workspaces" {
 }
 
 
+variable "subscription_id" {
+    description = "The subscription ID to be used"
+    type        = string
+  
+}
 
+variable "tenant_id" {
+    description = "The tenant ID to be used"
+    type        = string
+  
+}
 
 
 

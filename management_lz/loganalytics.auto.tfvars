@@ -2,7 +2,7 @@ log_analytics_workspaces = [
     {
         id = "01"
         location            = "westeurope"
-        resource_group_id = 1
+        resource_group_id = 0
         sku = "PerGB2018"
         retention_in_days                                  = 30
         identity                                           = "SystemAssigned"
