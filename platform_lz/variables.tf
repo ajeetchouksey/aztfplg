@@ -40,6 +40,7 @@ variable "container_apps_environment" {
     enable_telemetry  = optional(bool, false)
     log_analytics_workspace_customer_id = optional(string)
     log_analytics_workspace_destination = optional(string)
+    log_analytics_workspace_primary_shared_key = optional(string)
     //custom_domain_dns_suffix = optional(string)
   }))
 }
