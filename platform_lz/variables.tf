@@ -41,6 +41,7 @@ variable "container_apps_environment" {
     log_analytics_workspace_customer_id = optional(string)
     log_analytics_workspace_destination = optional(string)
     log_analytics_workspace_primary_shared_key = optional(string)
+    zone_redundancy_enabled = optional(bool, false)
     //custom_domain_dns_suffix = optional(string)
   }))
 }

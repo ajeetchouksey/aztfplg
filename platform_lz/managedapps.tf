@@ -12,5 +12,6 @@ module "container_apps_environment" {
     log_analytics_workspace_primary_shared_key = each.value.log_analytics_workspace_primary_shared_key
     log_analytics_workspace_customer_id = each.value.log_analytics_workspace_customer_id
     log_analytics_workspace_destination = each.value.log_analytics_workspace_destination 
+    zone_redundancy_enabled = each.value.zone_redundancy_enabled
 
 }
