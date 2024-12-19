@@ -1,8 +1,8 @@
 container_apps = [
     {
         name                                    = "my-container-app"
-        resource_group_name                     = "my-resource-group"
-        container_app_environment_resource_id   = module.container_apps_environment[0].id
+        // resource_group_name                     = "my-resource-group"
+        //container_app_environment_resource_id   = ""
         revision                                = "1"
         enable_telemetry                        = false
         registries = [

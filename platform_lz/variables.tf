@@ -49,8 +49,8 @@ variable "container_apps_environment" {
 variable "container_apps" {
     type = list(object({
         name = string
-        resource_group_name = string
-        container_app_environment_resource_id = string
+        //resource_group_name = string
+       // container_app_environment_resource_id = string
         revision = string
         enable_telemetry  = optional(bool, false)
         registries = list(object({
@@ -58,7 +58,7 @@ variable "container_apps" {
             password_secret_name = optional(string)
             server               = string
             username             = optional(string)
-        })), default = null
+        }))
         template = object({
             max_replicas    = optional(number)
             min_replicas    = optional(number)
@@ -183,3 +183,4 @@ variable "container_apps" {
 
     }))      
 }
+
