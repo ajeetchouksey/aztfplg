@@ -3,7 +3,7 @@ module "containerapp" {
     for_each = { for idx, app in var.container_apps : idx => app }
     name = each.value.name
     resource_group_name = module.azurerm_resource_group[0].name
-    container_app_environment_resource_id = module.container_apps_environment.id
+    container_app_environment_resource_id = "/subscriptions/a7dacc70-093c-439c-86c2-d02e7fa9b3c3/resourceGroups/test/providers/Microsoft.App/managedEnvironments/mangedenvironment-jh-01S"
     revision_mode = each.value.revision_mode
     enable_telemetry = each.value.enable_telemetry
     registries = each.value.registries
