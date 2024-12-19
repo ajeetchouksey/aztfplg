@@ -6,12 +6,12 @@ container_apps = [
         revision                                = "Single"
         enable_telemetry                        = false
         registries = [
-            {
-                identity             = "my-identity"
+/*             {
+               // identity             = "my-identity"
                 password_secret_name = "my-password-secret"
                 server               = "my-registry-server"
                 username             = "my-username"
-            }
+            } */
         ]
         template = {
             max_replicas    = 1
