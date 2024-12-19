@@ -3,7 +3,7 @@ container_apps = [
         name                                    = "my-container-app"
         // resource_group_name                     = "my-resource-group"
         //container_app_environment_resource_id   = ""
-        revision                                = "1"
+        revision                                = "Single"
         enable_telemetry                        = false
         registries = [
             {
