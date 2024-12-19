@@ -51,7 +51,7 @@ variable "container_apps" {
         name = string
         //resource_group_name = string
        // container_app_environment_resource_id = string
-        revision = string
+        revision_mode = string
         enable_telemetry  = optional(bool, false)
         registries = list(object({
             identity             = optional(string)

@@ -4,7 +4,6 @@ module "containerapp" {
     name = each.value.name
     resource_group_name = module.azurerm_resource_group[0].name
     container_app_environment_resource_id = module.containerapp_environment.resource_id
-    revision = each.value.revision
     revision_mode = each.value.revision_mode
     enable_telemetry = each.value.enable_telemetry
     registries = each.value.registries
