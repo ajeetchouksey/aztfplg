@@ -3,7 +3,7 @@ module "containerapp" {
     for_each = { for idx, app in var.container_apps : idx => app }
     name = each.value.name
     resource_group_name = module.azurerm_resource_group[0].name
-    container_app_environment_resource_id = module.container_apps_environment.resource_id
+    container_app_environment_resource_id = module.container_apps_environment.id
     revision_mode = each.value.revision_mode
     enable_telemetry = each.value.enable_telemetry
     registries = each.value.registries
