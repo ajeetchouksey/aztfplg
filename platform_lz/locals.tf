@@ -3,7 +3,7 @@ locals {
   landingzone_prefix = "plt"
   resource_name_prefix = "tf"
   location_short             = "we"
-
+ 
   tags = {
     environment = var.environment
     landingzone= "management"
