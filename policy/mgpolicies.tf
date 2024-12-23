@@ -3,7 +3,6 @@
 # It uses a module to create policy assignments based on the provided variables.
 # The policies are defined in the mgpolicies.auto.tfvars file and include details
 # such as the scope, policy definition ID, location, and parameters.
-
 module "policy_assignment" {
     source  = "Azure/avm-ptn-policyassignment/azurerm"
     version = "0.2.0"
