@@ -21,5 +21,6 @@ module "policy_assignment" {
     location             = each.value.location
 
     # The parameters for the policy assignment, encoded as a JSON string
-    parameters           = jsonencode(each.value.parameters)
+    //parameters           = jsonencode(each.value.parameters)
+    parameters           = each.value.parameters
 }
