@@ -10,10 +10,10 @@ module "policy_assignment" {
     version = "0.2.0"
 
     # Iterate over each policy in the mg_policies variable
-    for_each = var.mg_policies
+    for_each = { for policy in var.mg_policies : policy.policy_definition_id => policy }
 
     # The scope at which the policy will be assigned
-    scope                = "${data.azurerm_management_group.root.id}/providers/Microsoft.Authorization/policyAssignments/${each.value.policy_definition_id}"
+    scope                = each.value.scope
 
     # The ID of the policy definition to be assigned
     policy_definition_id = each.value.policy_definition_id
@@ -22,6 +22,5 @@ module "policy_assignment" {
     location             = each.value.location
 
     # The parameters for the policy assignment, encoded as a JSON string
-    //parameters           = jsonencode(each.value.parameters)
     parameters           = each.value.parameters
 }

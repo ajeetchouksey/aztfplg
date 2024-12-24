@@ -23,7 +23,7 @@ variable "tenant_id" {
 
 variable "mg_policies" {
     description = "Management group policies"
-    type = map(object({
+    type = list(object({
         scope                = string
         policy_definition_id = string
         location             = string

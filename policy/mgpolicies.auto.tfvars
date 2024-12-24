@@ -1,16 +1,15 @@
+# create tfvar values based on mg_polices variable defined in variables.tf
 
-mg_policies = {
-    mandatory = {
+mg_policies = [
+    {
         scope                = "/providers/Microsoft.Management/managementGroups/ajch_mgt_grp_01"
-        policy_definition_id = "/providers/Microsoft.Authorization/policyDefinitions/4f9dc7db-30c1-420c-b61a-e1d640128d26"
+        policy_definition_id = "/providers/Microsoft.Authorization/policyDefinitions/3c8b7e1a-2b7e-4b8a-9c8b-1e8b7e1a2b7e"
         location             = "westeurope"
         parameters = {
             project = {
-                value = "TF Playground"
+                value = "TF playground"
             }
         }
     }
-  # add more policies here
-}
-
+]
 
