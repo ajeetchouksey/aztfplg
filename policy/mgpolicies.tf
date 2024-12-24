@@ -13,7 +13,7 @@ module "policy_assignment" {
     for_each = var.mg_policies
 
     # The scope at which the policy will be assigned
-    scope                = data.azurerm_management_group.root.id
+    scope                = "${data.azurerm_management_group.root.id}/providers/Microsoft.Authorization/policyAssignments/${each.value.policy_definition_id}"
 
     # The ID of the policy definition to be assigned
     policy_definition_id = each.value.policy_definition_id
