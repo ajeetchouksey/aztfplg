@@ -1,5 +1,4 @@
 
-
 mg_policies = {
     mandatory = {
         scope                = "/providers/Microsoft.Management/managementGroups/ajch_mgt_grp_01"
