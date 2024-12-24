@@ -1,6 +1,4 @@
-data "azurerm_management_group" "root" {
-    name = "ajch_mgt_grp_01"
-}
+
 # This Terraform configuration assigns Azure Policies at the management group level.
 # It uses a module to create policy assignments based on the provided variables.
 # The policies are defined in the mgpolicies.auto.tfvars file and include details
@@ -23,4 +21,9 @@ module "policy_assignment" {
 
     # The parameters for the policy assignment, encoded as a JSON string
     parameters           = each.value.parameters
+      # Add filter conditions
+  metadata = jsonencode({
+    assignedBy = "Terraform"
+    filter     = "atScope()"
+  })
 }
