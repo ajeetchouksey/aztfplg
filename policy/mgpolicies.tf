@@ -1,3 +1,6 @@
+data "azurerm_management_group" "mg" {
+    display_name = "ajch_mgt_grp_01"
+}
 
 # This Terraform configuration assigns Azure Policies at the management group level.
 # It uses a module to create policy assignments based on the provided variables.
@@ -11,7 +14,7 @@ module "policy_assignment" {
     for_each = { for policy in var.mg_policies : policy.policy_definition_id => policy }
 
     # The scope at which the policy will be assigned
-    scope                = each.value.scope
+    scope = data.azurerm_management_group.mg.id
 
     # The ID of the policy definition to be assigned
     policy_definition_id = each.value.policy_definition_id
@@ -21,9 +24,6 @@ module "policy_assignment" {
 
     # The parameters for the policy assignment, encoded as a JSON string
     parameters           = each.value.parameters
-      # Add filter conditions
-  metadata = jsonencode({
-    assignedBy = "Terraform"
-    filter     = "atScope()"
-  })
+
+
 }
