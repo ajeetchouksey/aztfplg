@@ -13,7 +13,7 @@ module "assign_policy_at_management_group" {
     for_each = { for policy in var.mg_policies : policy.policy_definition_id => policy }
 
     # The scope at which the policy will be assigned
-    scope = data.azurerm_management_group.mg.id
+    scope =  "/providers/Microsoft.Management/managementGroups/ajch_mgt_grp_01"
 
     # The ID of the policy definition to be assigned
     policy_definition_id = each.value.policy_definition_id
