@@ -27,3 +27,16 @@ module "policy_assignment" {
 
 
 }
+resource "azurerm_policy_assignment" "example" {
+    for_each             = { for policy in var.mg_policies : policy.policy_definition_id => policy }
+    name                 = each.value.name
+    scope                = data.azurerm_management_group.mg.id
+    policy_definition_id = each.value.policy_definition_id
+    location             = each.value.location
+    parameters           = each.value.parameters
+
+    # Adding the filter to the policy assignment
+    filter {
+        policy_definition_id = each.value.policy_definition_id
+    }
+}
