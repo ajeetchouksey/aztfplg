@@ -6,9 +6,8 @@ data "azurerm_management_group" "mg" {
 # It uses a module to create policy assignments based on the provided variables.
 # The policies are defined in the mgpolicies.auto.tfvars file and include details
 # such as the scope, policy definition ID, location, and parameters.
-module "policy_assignment" {
-    source  = "Azure/avm-ptn-policyassignment/azurerm"
-    version = "0.2.0"
+module "assign_policy_at_management_group" {
+    source = "git::https://github.com/Azure/terraform-azurerm-avm-ptn-policyassignment.git?ref=bfea8dad3c97f14ef415b580f3a430b9a74b5910"
 
     # Iterate over each policy in the mg_policies variable
     for_each = { for policy in var.mg_policies : policy.policy_definition_id => policy }
@@ -26,17 +25,4 @@ module "policy_assignment" {
     parameters           = each.value.parameters
 
 
-}
-resource "azurerm_policy_assignment" "example" {
-    for_each             = { for policy in var.mg_policies : policy.policy_definition_id => policy }
-    name                 = each.value.name
-    scope                = data.azurerm_management_group.mg.id
-    policy_definition_id = each.value.policy_definition_id
-    location             = each.value.location
-    parameters           = each.value.parameters
-
-    # Adding the filter to the policy assignment
-    filter {
-        policy_definition_id = each.value.policy_definition_id
-    }
 }
