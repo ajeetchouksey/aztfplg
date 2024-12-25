@@ -16,7 +16,7 @@ module "assign_policy_at_management_group" {
     scope =  "/providers/Microsoft.Management/managementGroups/ajch_mgt_grp_01"
 
     # The ID of the policy definition to be assigned
-    policy_definition_id = each.value.policy_definition_id
+    policy_definition_id = "/providers/Microsoft.Authorization/policyDefinitions/3c8b7e1a-2b7e-4b8a-9c8b-1e8b7e1a2b7e"
 
     # The location where the policy assignment will be created
     location             = each.value.location
@@ -25,4 +25,16 @@ module "assign_policy_at_management_group" {
     parameters           = each.value.parameters
 
 
+}
+resource "azurerm_policy_assignment" "example" {
+  for_each             = { for policy in var.mg_policies : policy.policy_definition_id => policy }
+  name                 = "mypolicyassignment-${each.value.policy_definition_id}"
+  policy_definition_id = each.value.policy_definition_id
+  scope                = each.value.scope
+  location             = each.value.location
+  parameters           = each.value.parameters
+
+  metadata = jsonencode({
+    assignedBy = "Terraform"
+  })
 }
