@@ -1,4 +1,5 @@
 resource_groups = [
+    # resource group for the shared services
     {      
         id = "00"
         purpose = "shd"

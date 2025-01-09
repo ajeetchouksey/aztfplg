@@ -3,7 +3,6 @@ variable "resource_groups" {
     type = list(object({        
         id = string
         purpose = string
-        location = string 
     }))
   
 }
@@ -25,7 +24,7 @@ variable "log_analytics_workspaces" {
     type = list(object({
         id                 = string
         location            = string
-        resource_group_id = number
+        resource_group_index = number
         sku                 = string
         identity            = string
         retention_in_days                                  = number

@@ -32,16 +32,3 @@ variable "tenant_id" {
   
 }
 
-
-variable "container_apps_environment" {
-  type = list(object({
-    container_app_environment_name = string
-    resource_group_name            = string
-    enable_telemetry  = optional(bool, false)
-    log_analytics_workspace_customer_id = optional(string)
-    log_analytics_workspace_destination = optional(string)
-    log_analytics_workspace_primary_shared_key = optional(string)
-    zone_redundancy_enabled = optional(bool, false)
-    //custom_domain_dns_suffix = optional(string)
-  }))
-}
