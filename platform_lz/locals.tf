@@ -6,7 +6,7 @@ locals {
  
   tags = {
     environment = var.environment
-    landingzone= "management"
+    landingzone= "platform"
     project = "TF Playground" 
     last_updated = formatdate("YYYY-MM-DD", timestamp())
   }
