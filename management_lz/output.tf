@@ -3,8 +3,8 @@ output "resource_groups" {
     value = {
         for idx, rg in module.azurerm_resource_group :
         idx => {
-            name     = rg.name
-            location = rg.location
+            name     = rg.outputs.name
+            location = rg.outputs.location
         }
     }
 }
