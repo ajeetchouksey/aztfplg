@@ -8,12 +8,3 @@ output "resource_groups" {
     }
 }
 
-output "resource_group_locations" {
-    description = "List of resource groups with their locations"
-    value = {
-        for idx, rg in module.azurerm_resource_group :
-        idx => {
-            location = rg.location
-        }
-    }
-}

@@ -3,7 +3,6 @@ variable "resource_groups" {
     type = list(object({        
         id = string
         purpose = string
-        location = string 
     }))
   
 }

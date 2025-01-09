@@ -13,7 +13,7 @@ module "azurerm_resource_group" {
     name     = "${local.landingzone_prefix}-${local.environment}-${each.value.purpose}-${each.value.id}"
     
     # Set the location for the resource group
-    location = each.value.location
+    location = var.location
     
     # Set the tags for the resource group
     tags = local.tags
