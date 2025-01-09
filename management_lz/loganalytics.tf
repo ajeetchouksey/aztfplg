@@ -16,10 +16,10 @@ module "azurerm_log_analytics_workspace" {
     
     # Use the resource group based on the resource_group_index
      //resource_group_name = data.azurerm_resource_group.all[each.value.resource_group_index]
-    resource_group_name = module.azurerm_resource_group[0].name
+    resource_group_name = module.azurerm_resource_group[each.value.resource_group_index].name
     
     # Set the location for the Log Analytics workspace
-    location = module.azurerm_resource_group[0].location
+    location = module.azurerm_resource_group[each.value.resource_group_index].location
     
     # Set the SKU for the Log Analytics workspace
     log_analytics_workspace_sku = each.value.sku
