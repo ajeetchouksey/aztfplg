@@ -1,8 +1,8 @@
 # Fetch details of the resource group created by the module
-data "azurerm_resource_group" "all" {
+/* data "azurerm_resource_group" "all" {
     for_each = { for idx, rg in var.resource_groups : idx => rg }
     name = each.value.name
-}
+} */
 
 # Create Log Analytics workspaces
 module "azurerm_log_analytics_workspace" {
@@ -15,8 +15,8 @@ module "azurerm_log_analytics_workspace" {
     name = "${local.landingzone_prefix}-core-infra-${local.environment}-la-${each.value.id}"
     
     # Use the resource group based on the resource_group_index
-     resource_group_name = data.azurerm_resource_group.all[each.value.resource_group_index]
-   
+     //resource_group_name = data.azurerm_resource_group.all[each.value.resource_group_index]
+    resource_group_name = module.azurerm_resource_group[each.value.resource_group_index].name
     
     # Set the location for the Log Analytics workspace
     location = each.value.location
