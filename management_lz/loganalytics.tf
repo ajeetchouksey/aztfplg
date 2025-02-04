@@ -9,16 +9,16 @@ module "azurerm_log_analytics_workspace" {
     source = "git::https://github.com/Azure/terraform-azurerm-avm-res-operationalinsights-workspace.git?ref=1600b5831873ca127723368e35aba380a7e061e3"
    
     # Iterate over each log analytics workspace defined in the variable
-    for_each = { for idx, law in var.log_analytics_workspaces : idx => law }
+    for_each = { for idx, law in local.log_analytics_workspaces : idx => law }
 
     # Define the name of the Log Analytics workspace
-    name = "${local.landingzone_prefix}-core-infra-${local.environment}-la-${each.value.id}"
+    name = each.value.name
     
     # Use the resource group fetched earlier
     resource_group_name = data.azurerm_resource_group.all.name
     
     # Set the location for the Log Analytics workspace
-    location = var.location  
+    location = each.value.location
     
     # Set the SKU for the Log Analytics workspace
     log_analytics_workspace_sku = each.value.sku
