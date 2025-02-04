@@ -19,13 +19,13 @@ locals {
   log_analytics_workspaces = [
     for law in var.log_analytics_workspaces : {
       name = "${var.landingzone_prefix}-ci-${var.environment}-la-${law.id}"
-      location = each.value.law.location
+      location = law.location
       resource_group_name = element([for rg in local.resource_groups_name : rg.name], law.resource_group_id)
-      log_analytics_workspace_sku = each.value.law.sku
-      log_analytics_workspace_retention_in_days = each.value.law.retention_in_days
-      log_analytics_workspace_internet_ingestion_enabled = each.value.law.log_analytics_workspace_internet_ingestion_enabled  
-      log_analytics_workspace_internet_query_enabled = each.value.law.log_analytics_workspace_internet_query_enabled
-      identity = each.value.law.identity
+      log_analytics_workspace_sku = law.sku
+      log_analytics_workspace_retention_in_days = law.retention_in_days
+      log_analytics_workspace_internet_ingestion_enabled = law.log_analytics_workspace_internet_ingestion_enabled  
+      log_analytics_workspace_internet_query_enabled = law.log_analytics_workspace_internet_query_enabled
+      identity = law.identity
       
     }
   ]
