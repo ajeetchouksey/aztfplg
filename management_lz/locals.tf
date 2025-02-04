@@ -13,7 +13,8 @@ locals {
 
   resource_groups_name = [
     for rg in var.resource_groups : {
-      name = "${local.landingzone_prefix}-core-infra-rg-${local.environment}-${rg.id}"
+    //  name = "${local.landingzone_prefix}-core-infra-rg-${local.environment}-${rg.id}"
+    name = "${landingzone_prefix}-core-infra-${environment}-rg-${rg.id}"
       location = rg.location
     }
   ]
