@@ -1,3 +1,22 @@
+
+variable "landingzone_prefix" {
+    description = "Prefix for the landing zone"
+    type        = string
+    default     = "m"
+}
+
+variable "resource_name_prefix" {
+    description = "Prefix for the resource names"
+    type        = string
+    default     = "tf"
+}
+
+variable "location_short" {
+    description = "Short name for the location"
+    type        = string
+    default     = "we"
+}
+
 variable "resource_groups" {
     description = "List of resource groups to be created"
     type = list(object({        
