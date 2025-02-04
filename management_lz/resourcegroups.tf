@@ -10,10 +10,10 @@ module "azurerm_resource_group" {
     for_each = { for idx, rg in local.resource_groups_name : idx => rg }
 
     # Define the name of the resource group
-    name     = rg.name
+    name     = each.key
     
     # Set the location for the resource group
-    location = rg.location
+    location = each.value.location
     
     # Set the tags for the resource group
     tags = local.tags
