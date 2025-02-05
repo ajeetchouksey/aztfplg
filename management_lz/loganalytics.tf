@@ -7,10 +7,12 @@ data "azurerm_resource_group" "all" {
 # Create Log Analytics workspaces
 module "azurerm_log_analytics_workspace" {
     source = "git::https://github.com/Azure/terraform-azurerm-avm-res-operationalinsights-workspace.git?ref=1600b5831873ca127723368e35aba380a7e061e3"
+    
    
     # Iterate over each log analytics workspace defined in the variable
     for_each = { for idx, law in local.log_analytics_workspaces : idx => {
-        name = law.resource_group_name
+        name = law.name
+        resource_group_name = law.resource_group_name
         location = law.location
         sku = law.sku
         retention_in_days = law.retention_in_days
