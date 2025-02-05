@@ -1,3 +1,15 @@
+# This file defines the variables used in the management landing zone configuration.
+# 
+# Variables:
+# - landingzone_prefix: Prefix for the landing zone (default: "m").
+# - resource_name_prefix: Prefix for the resource names (default: "tf").
+# - location_short: Short name for the location (default: "we").
+# - resource_groups: List of resource groups to be created, each with an id, purpose, and location.
+# - location: The location where the resources will be created (default: "West Europe").
+# - environment: The environment to be created.
+# - log_analytics_workspaces: List of Log Analytics workspaces to be created, each with various properties such as id, location, resource_group_id, sku, identity, retention_in_days, and internet ingestion/query settings.
+# - subscription_id: The subscription ID to be used.
+# - tenant_id: The tenant ID to be used.
 
 variable "landingzone_prefix" {
     description = "Prefix for the landing zone"
