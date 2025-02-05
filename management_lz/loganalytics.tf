@@ -16,33 +16,11 @@ module "azurerm_log_analytics_workspace" {
         retention_in_days = law.retention_in_days,
         log_analytics_workspace_internet_ingestion_enabled = law.log_analytics_workspace_internet_ingestion_enabled,
         log_analytics_workspace_internet_query_enabled = law.log_analytics_workspace_internet_query_enabled,
-        identity = law.identity
+        identity = law.identity,
+        log_analytics_workspace_identity = {
+            type = each.value.identity
+        }
     }}
 
-    # Define the name of the Log Analytics workspace
-    name = each.value.name
-    
-    # Use the resource group fetched earlier
-    resource_group_name = data.azurerm_resource_group.all.name
-    
-    # Set the location for the Log Analytics workspace
-    location = each.value.location
-    
-    # Set the SKU for the Log Analytics workspace
-    log_analytics_workspace_sku = each.value.sku
-    
-    # Set the retention period for the Log Analytics workspace
-    log_analytics_workspace_retention_in_days = each.value.retention_in_days
-    
-    # Enable or disable internet ingestion for the Log Analytics workspace
-    log_analytics_workspace_internet_ingestion_enabled = each.value.log_analytics_workspace_internet_ingestion_enabled
-    
-    # Enable or disable internet query for the Log Analytics workspace
-    log_analytics_workspace_internet_query_enabled = each.value.log_analytics_workspace_internet_query_enabled
-    
-    # Set the identity type for the Log Analytics workspace
-    log_analytics_workspace_identity = {        
-        type = each.value.identity
-    }   
 }
 
