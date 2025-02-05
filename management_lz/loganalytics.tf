@@ -10,13 +10,13 @@ module "azurerm_log_analytics_workspace" {
    
     # Iterate over each log analytics workspace defined in the variable
     for_each = { for idx, law in local.log_analytics_workspaces : idx => {
-        name = law.name,
-        location = law.location,
-        sku = law.sku,
-        retention_in_days = law.retention_in_days,
-        log_analytics_workspace_internet_ingestion_enabled = law.log_analytics_workspace_internet_ingestion_enabled,
-        log_analytics_workspace_internet_query_enabled = law.log_analytics_workspace_internet_query_enabled,
-        identity = law.identity,
+        name = law.resource_group_name
+        location = law.location
+        sku = law.sku
+        retention_in_days = law.retention_in_days
+        log_analytics_workspace_internet_ingestion_enabled = law.log_analytics_workspace_internet_ingestion_enabled
+        log_analytics_workspace_internet_query_enabled = law.log_analytics_workspace_internet_query_enabled
+        identity = law.identity
         log_analytics_workspace_identity = {
             type = each.value.identity
         }

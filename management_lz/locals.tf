@@ -19,7 +19,7 @@ locals {
   log_analytics_workspaces = [
     for law in var.log_analytics_workspaces : {
       name = "${var.landingzone_prefix}-ci-${var.environment}-la-${law.id}"
-      location = law.location
+      location = var.location
       resource_group_name = element([for rg in local.resource_groups_name : rg.name], law.resource_group_id)
       log_analytics_workspace_sku = law.sku
       log_analytics_workspace_retention_in_days = law.retention_in_days
