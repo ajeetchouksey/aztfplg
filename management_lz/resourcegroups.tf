@@ -6,11 +6,11 @@ module "azurerm_resource_group" {
     # Version of the module to use
     version = "0.1.0"
     
-    # Iterate over each resource group defined in the variable
-    for_each = { for idx, rg in var.resource_groups : idx => rg }
+    # Iterate over each resource group defined in the locals
+    for_each = { for idx, rg in local.resource_groups_name : idx => rg }
 
     # Define the name of the resource group
-    name     = "${local.landingzone_prefix}-${local.environment}-${each.value.purpose}-${each.value.id}"
+    name     = each.value.name
     
     # Set the location for the resource group
     location = each.value.location
