@@ -1,5 +1,5 @@
 module "vnets" {
-    source  =  "git::https://github.com/Azure/terraform-azurerm-avm-res-network-virtualnetwork/commit/0b98468937a391b625d32098bc558d3e7c8ef54e"
+    source  =  "git::https://github.com/Azure/terraform-azurerm-avm-res-network-virtualnetwork.git?ref=0b98468937a391b625d32098bc558d3e7c8ef54e"
 
     for_each = { for vnet in local.vnets : vnet.id => vnet }
 
