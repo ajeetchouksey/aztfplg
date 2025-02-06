@@ -9,7 +9,7 @@ vnets = [
         bgp_community = ""
         dhcp_options = ""
         enable_vm_protection = false
-        encryption = {}
+        encryption = ""
        
     }
     # Add more virtual networks as needed
