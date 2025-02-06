@@ -11,6 +11,17 @@
 # - subscription_id: The subscription ID to be used.
 # - tenant_id: The tenant ID to be used.
 
+variable "subscription_id" {
+    description = "The subscription ID to be used"
+    type        = string
+  
+}
+
+variable "tenant_id" {
+    description = "The tenant ID to be used"
+    type        = string
+  
+}
 variable "landingzone_prefix" {
     description = "Prefix for the landing zone"
     type        = string
@@ -51,32 +62,8 @@ variable "environment" {
     type        = string  
 }
 
-variable "log_analytics_workspaces" {
-    description = "List of Log Analytics workspaces to be created"
-    type = list(object({
-        id                 = string
-        location            = string
-        resource_group_id = number
-        sku                 = string
-        identity            = string
-        retention_in_days                                  = number
-        log_analytics_workspace_internet_ingestion_enabled = bool
-        log_analytics_workspace_internet_query_enabled     = bool
-    }))
-}
 
 
-variable "subscription_id" {
-    description = "The subscription ID to be used"
-    type        = string
-  
-}
-
-variable "tenant_id" {
-    description = "The tenant ID to be used"
-    type        = string
-  
-}
 
 
 
