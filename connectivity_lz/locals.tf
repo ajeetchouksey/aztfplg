@@ -29,7 +29,7 @@ locals {
       ddos_protection_plan = vnet.ddos_protection_plan
       bgp_community = vnet.bgp_community
       dhcp_options = vnet.dhcp_options
-      enable_vm_protection = vnet.enableVmProtection
+      enable_vm_protection = vnet.enable_vm_protection
       encryption = vnet.encryption
      
       
