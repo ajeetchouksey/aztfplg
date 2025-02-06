@@ -1,7 +1,7 @@
 module "vnets" {
     source  =  "git::https://github.com/Azure/terraform-azurerm-avm-res-network-virtualnetwork.git?ref=0b98468937a391b625d32098bc558d3e7c8ef54e"
 
-    for_each = { for vnet in local.vnets : vnet.name => vnet }
+    for_each = { for idx, vnet in local.vnets : idx => vnet }
         name                = each.value.name
         resource_group_name = each.value.resource_group_name
         location            = each.value.location
