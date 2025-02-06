@@ -7,11 +7,12 @@ resource_groups = [
         id = "01"
         
         # Purpose of the resource group
-        purpose = "core"
+        purpose = "connectivity"
         
         # Location where the resource group will be created
         location = "westeurope"
     }
+
 
     # Add more resource groups as needed
 ]
