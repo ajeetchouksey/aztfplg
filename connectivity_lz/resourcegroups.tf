@@ -7,7 +7,7 @@ module "azurerm_resource_group" {
     version = "0.1.0"
     
     # Iterate over each resource group defined in the locals
-    for_each = { for idx, rg in data.terraform_remote_state.connectivity_lz.outputs.resource_groups_name : idx => rg }
+    for_each = { for idx, rg in local.resource_groups_name : idx => rg }
 
         # Define the name of the resource group
         name     = each.value.name
@@ -16,5 +16,5 @@ module "azurerm_resource_group" {
         location = each.value.location
         
         # Set the tags for the resource group
-        tags = data.terraform_remote_state.connectivity_lz.outputs.tags
+        tags = local.tags
 }
