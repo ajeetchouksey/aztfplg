@@ -76,7 +76,7 @@ variable "vnets" {
         dhcp_options = string
         enableVmProtection = bool
         encryption = string
-        tags = map(string)
+        
     }))
   
 }
