@@ -4,8 +4,7 @@ module "vnets" {
     for_each = { for vnet in local.vnets : vnet.id => vnet }
 
         resource_group_name = each.value.resource_group_name
-        address_space       = each.value.address_space
-        tags                = local.tags 
+        address_space       = each.value.address_space        
         dns_servers = each.value.dns_servers
         ddos_protection_plan = each.value.ddos_protection_plan
         bgp_community = each.value.bgp_community
