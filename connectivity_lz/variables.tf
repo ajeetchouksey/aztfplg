@@ -74,7 +74,7 @@ variable "vnets" {
         ddos_protection_plan = string
         bgp_community = string
         dhcp_options = string
-        enableVmProtection = bool
+        enable_vm_protection = bool
         encryption = string
         
     }))
