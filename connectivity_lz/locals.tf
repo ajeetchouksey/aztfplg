@@ -25,6 +25,13 @@ locals {
       location = vnet.location
       resource_group_name = element([for rg in local.resource_groups_name : rg.name], vnet.resource_group_id)
       address_space = vnet.address_space
+      dns_servers = vnet.dns_servers
+      ddos_protection_plan = vnet.ddos_protection_plan
+      bgp_community = vnet.bgp_community
+      dhcp_options = vnet.dhcp_options
+      enable_vm_protection = vnet.enableVmProtection
+      encryption = vnet.encryption
+     
       
     }
   ]       
