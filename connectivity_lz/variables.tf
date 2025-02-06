@@ -1,7 +1,7 @@
 # This file defines the variables used in the management landing zone configuration.
 # 
 # Variables:
-# - landingzone_prefix: Prefix for the landing zone (default: "m").
+# - landingzone_prefix: Prefix for the landing zone (default: "c").
 # - resource_name_prefix: Prefix for the resource names (default: "tf").
 # - location_short: Short name for the location (default: "we").
 # - resource_groups: List of resource groups to be created, each with an id, purpose, and location.
@@ -63,7 +63,23 @@ variable "environment" {
 }
 
 
-
+variable "vnets" {
+    description = "List of virtual networks to be created"
+    type = list(object({        
+        id = string
+        location = string
+        resource_group_id = number
+        address_space = list(string)
+        dns_servers = list(string)
+        ddos_protection_plan = string
+        bgp_community = string
+        dhcp_options = string
+        enableVmProtection = bool
+        encryption = string
+        tags = map(string)
+    }))
+  
+}
 
 
 

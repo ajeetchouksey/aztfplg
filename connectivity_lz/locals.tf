@@ -17,4 +17,16 @@ locals {
   ]
           
 
+  # List of virtual networks with their properties
+  vnets = [
+    for vnet in var.vnets : {
+      # Construct the virtual network name using the landing zone prefix, environment, and virtual network ID
+      name = "${var.landingzone_prefix}-ci-${var.environment}-vnet-${vnet.id}"
+      location = vnet.location
+      resource_group_name = element([for rg in local.resource_groups_name : rg.name], vnet.resource_group_id)
+      address_space = vnet.address_space
+      
+    }
+  ]       
+
 }
