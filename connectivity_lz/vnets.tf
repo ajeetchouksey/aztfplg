@@ -10,7 +10,7 @@ module "vnets" {
         dns_servers = each.value.dns_servers
         ddos_protection_plan = each.value.ddos_protection_plan
         bgp_community = each.value.bgp_community
-        dhcpOptions = each.value.dhcp_options
+        //dhcpOptions = each.value.dhcp_options
         enable_vm_protection = each.value.enableVmProtection
         encryption = each.value.encryption
         
