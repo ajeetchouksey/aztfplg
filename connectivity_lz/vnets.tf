@@ -12,5 +12,5 @@ module "vnets" {
         //dhcpOptions = each.value.dhcp_options
         enable_vm_protection = each.value.enableVmProtection
         encryption = each.value.encryption
-        tags  = locals.tags
+        tags  = local.tags
 }
