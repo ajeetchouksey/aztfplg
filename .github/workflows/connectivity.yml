@@ -1,15 +1,15 @@
-name: Platform CI
+name: Connectivity CI
 
 on:
   push:    
     paths:
-      - 'platform_lz/**'
-      - '.github/workflows/shd_plt.yml'
+      - 'connectivity_lz/**'
+      - '.github/workflows/connectivity.yml'
 
 
 jobs:
   deploy_to_prod:
-    name: 'Shared Platform'
+    name: 'Connectivity Platform'
     runs-on: ubuntu-latest
 
     env:
@@ -38,9 +38,9 @@ jobs:
           enable-AzPSSession: true    
 
       # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
-      - name: Terraform Init
+      - name: Terraform Init 
         id: init
-        working-directory: ./platform_lz
+        working-directory: ./connectivity_lz
         env:
           ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
           ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
@@ -50,16 +50,16 @@ jobs:
           STORAGE_ACCOUNT: ${{ secrets.AZURE_STORAGE_ACCOUNT_NAME }}
           STORAGE_ACCOUNT_KEY: ${{ secrets.AZURE_STORAGE_ACCESS_KEY }}
           CONTAINER_NAME: ${{ secrets.AZURE_STORAGE_CONTAINER_NAME }}
-        run: terraform init -backend-config="storage_account_name=$STORAGE_ACCOUNT" -backend-config="container_name=$CONTAINER_NAME" -backend-config="resource_group_name=$RESOURCE_GROUP" -backend-config="key=shdplt.tfstate"
+        run: terraform init -backend-config="storage_account_name=$STORAGE_ACCOUNT" -backend-config="container_name=$CONTAINER_NAME" -backend-config="resource_group_name=$RESOURCE_GROUP" -backend-config="key=cnt.tfstate"
         
       - name: Terraform Validate
         id: validate
-        working-directory: ./platform_lz
+        working-directory:  ./connectivity_lz
         run: terraform validate 
 
-      - name: Terraform Plan
+      - name: Terraform Plan 
         id: plan
-        working-directory: ./platform_lz
+        working-directory: ./connectivity_lz/
         env:
           ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
           ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
@@ -67,25 +67,13 @@ jobs:
           ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
         run: terraform plan -var 'environment=p' -var 'subscription_id=${{ secrets.AZURE_SUBSCRIPTION_ID }}' -var 'tenant_id=${{ secrets.AZURE_TENANT_ID }}'
 
-      - name: Terraform Apply
+      - name: Terraform Apply 
         if: github.ref == 'refs/heads/main'
         id: apply
-        working-directory: ./platform_lz
+        working-directory:  ./connectivity_lz
         env:
           ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
           ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
           ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
           ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
         run: terraform apply -auto-approve -var 'environment=p' -var 'subscription_id=${{ secrets.AZURE_SUBSCRIPTION_ID }}' -var 'tenant_id=${{ secrets.AZURE_TENANT_ID }}'
-
-      - name: Terraform Destroy
-        if: github.ref == 'refs/heads/main'
-        id: destroy
-        working-directory: ./platform_lz
-        env:
-          ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
-          ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
-          ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
-          ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-        run: terraform destroy -auto-approve -var 'environment=p' -var 'subscription_id=${{ secrets.AZURE_SUBSCRIPTION_ID }}' -var 'tenant_id=${{ secrets.AZURE_TENANT_ID }}'
-
