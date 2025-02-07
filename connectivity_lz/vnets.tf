@@ -1,8 +1,8 @@
 
 data "azurerm_log_analytics_workspace" "lwa" {
    
-    name                = var.log_analytics_workspaces.name
-    resource_group_name = var.log_analytics_workspaces.resource_group_name
+    name                = var.log_analytics_workspaces_name
+    resource_group_name = var.log_analytics_workspaces_rg
 }
 module "vnets" {
     source  =  "git::https://github.com/Azure/terraform-azurerm-avm-res-network-virtualnetwork.git?ref=0b98468937a391b625d32098bc558d3e7c8ef54e"

@@ -111,11 +111,13 @@ variable "diagnostic_settings" {
     }
 } */
 
-variable "log_analytics_workspaces" {
-    type = object({
-       name = string
-       resource_group_name = string
-    })  
+variable "log_analytics_workspaces_name" {
+    type = string
+
+}
+variable "log_analytics_workspaces_rg" {
+    type = string
+
 }
 
 
