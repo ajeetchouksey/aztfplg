@@ -4,7 +4,9 @@ vnets = [
         location = "West Europe"
         resource_group_id = 0
         address_space = ["10.0.0.0/24"]
-        dns_servers = {}
+        dns_servers = {
+            servers = []
+        }
         ddos_protection_plan = ""
         bgp_community = ""
         dhcp_options = ""
