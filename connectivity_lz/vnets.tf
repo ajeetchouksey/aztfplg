@@ -19,11 +19,13 @@ module "vnets" {
         //dhcpOptions = each.value.dhcp_options
         enable_vm_protection = each.value.enable_vm_protection
             diagnostic_settings = {
-                //name                          =local.diagnostic_settings_name              
-                workspace_resource_id  = data.azurerm_log_analytics_workspace.lwa.id
-               // log_groups                    = ["allLogs"]//lookup(each.value, "log_groups", ["allLogs"])
-                //metric_categories             = ["AllMetrics"]//lookup(each.value, "metric_categories", ["AllMetrics"])
-               // log_analytics_destination_type = "Dedicated"//lookup(each.value, "log_analytics_destination_type", "Dedicated")
+                settings = {
+                    //name                          =local.diagnostic_settings_name              
+                    workspace_resource_id  = data.azurerm_log_analytics_workspace.lwa.id
+                   // log_groups                    = ["allLogs"]//lookup(each.value, "log_groups", ["allLogs"])
+                    //metric_categories             = ["AllMetrics"]//lookup(each.value, "metric_categories", ["AllMetrics"])
+                   // log_analytics_destination_type = "Dedicated"//lookup(each.value, "log_analytics_destination_type", "Dedicated")
+                }
             }
 
 }
