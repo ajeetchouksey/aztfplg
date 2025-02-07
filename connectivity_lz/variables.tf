@@ -89,7 +89,7 @@ variable "vnets" {
     }))
   
 }
-
+/* 
 variable "diagnostic_settings" {
     description = "Diagnostic settings for resources"
     type = object({
@@ -109,7 +109,7 @@ variable "diagnostic_settings" {
         name = ""
         resource_group_name = ""
     }
-}
+} */
 
 variable "log_analytics_workspaces" {
     type = object({

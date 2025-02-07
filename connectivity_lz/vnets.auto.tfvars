@@ -28,10 +28,3 @@ log_analytics_workspaces = {
   resource_group_name = "m-ci-p-rg-01"
 }
 
-diagnostic_settings = {
-    name = ""
-    log_groups = ["allLogs"]
-    metric_categories = ["AllMetrics"]
-    log_analytics_destination_type = "Dedicated"
-  
-}
