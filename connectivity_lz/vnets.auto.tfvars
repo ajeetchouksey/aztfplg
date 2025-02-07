@@ -29,6 +29,7 @@ log_analytics_workspaces = {
 }
 
 diagnostic_settings = {
+    name = ""
     log_groups = ["allLogs"]
     metric_categories = ["AllMetrics"]
     log_analytics_destination_type = "Dedicated"
