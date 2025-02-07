@@ -1,5 +1,11 @@
 locals {
   # Tags to be applied to resources
+  diagnostic_settings = [
+    for vnet in var.vnets : {
+      name                          = "${var.landingzone_prefix}-ci-${var.environment}-vnet-${vnet.id}-diag"
+      
+    }
+  ]
   tags = {
     environment = var.environment
     landingzone = "connectivity"
