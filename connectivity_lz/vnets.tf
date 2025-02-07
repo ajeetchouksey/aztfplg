@@ -1,7 +1,7 @@
 
 data "azurerm_log_analytics_workspace" "lwa" {
    
-    name                = varlog_analytics_workspaces.name
+    name                = var.log_analytics_workspaces.name
     resource_group_name = var.log_analytics_workspaces.resource_group_name
 }
 module "vnets" {
