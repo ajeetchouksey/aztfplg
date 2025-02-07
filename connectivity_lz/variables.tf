@@ -1,43 +1,49 @@
-# This file defines the variables used in the management landing zone configuration.
-# 
-# Variables:
-# - landingzone_prefix: Prefix for the landing zone (default: "c").
-# - resource_name_prefix: Prefix for the resource names (default: "tf").
-# - location_short: Short name for the location (default: "we").
-# - resource_groups: List of resource groups to be created, each with an id, purpose, and location.
-# - location: The location where the resources will be created (default: "West Europe").
-# - environment: The environment to be created.
-# - log_analytics_workspaces: List of Log Analytics workspaces to be created, each with various properties such as id, location, resource_group_id, sku, identity, retention_in_days, and internet ingestion/query settings.
-# - subscription_id: The subscription ID to be used.
-# - tenant_id: The tenant ID to be used.
-
 variable "subscription_id" {
     description = "The subscription ID to be used"
     type        = string
-  
+    validation {
+        condition     = length(var.subscription_id) > 0
+        error_message = "The subscription ID must not be empty."
+    }
 }
 
 variable "tenant_id" {
     description = "The tenant ID to be used"
     type        = string
-  
+    validation {
+        condition     = length(var.tenant_id) > 0
+        error_message = "The tenant ID must not be empty."
+    }
 }
+
 variable "landingzone_prefix" {
     description = "Prefix for the landing zone"
     type        = string
     default     = "c"
+    validation {
+        condition     = length(var.landingzone_prefix) > 0
+        error_message = "The landing zone prefix must not be empty."
+    }
 }
 
 variable "resource_name_prefix" {
     description = "Prefix for the resource names"
     type        = string
     default     = "tf"
+    validation {
+        condition     = length(var.resource_name_prefix) > 0
+        error_message = "The resource name prefix must not be empty."
+    }
 }
 
 variable "location_short" {
     description = "Short name for the location"
     type        = string
     default     = "we"
+    validation {
+        condition     = length(var.location_short) > 0
+        error_message = "The location short name must not be empty."
+    }
 }
 
 variable "resource_groups" {
@@ -47,21 +53,30 @@ variable "resource_groups" {
         purpose = string
         location = string 
     }))
-  
+    validation {
+        condition     = length(var.resource_groups) > 0
+        error_message = "The resource groups list must not be empty."
+    }
 }
-
 
 variable "location" {
     description = "The location where the resources will be created"
     type        = string
     default     = "West Europe"
+    validation {
+        condition     = length(var.location) > 0
+        error_message = "The location must not be empty."
+    }
 }
 
 variable "environment" {
     description = "The environment to be created"
-    type        = string  
+    type        = string
+    validation {
+        condition     = length(var.environment) > 0
+        error_message = "The environment must not be empty."
+    }
 }
-
 
 variable "vnets" {
     description = "List of virtual networks to be created"
@@ -87,78 +102,9 @@ variable "vnets" {
         })
         
     }))
-  
-}
-/* 
-variable "diagnostic_settings" {
-    description = "Diagnostic settings for resources"
-    type = object({
-        name                                     = string
-        resource_group_name                      = string
-        log_categories                           = optional(set(string), [])
-        log_groups                               = optional(set(string), ["allLogs"])
-        metric_categories                        = optional(set(string), ["AllMetrics"])
-        log_analytics_destination_type           = optional(string, "Dedicated")
-        workspace_resource_id                    = optional(string, null)
-        storage_account_resource_id              = optional(string, null)
-        event_hub_authorization_rule_resource_id = optional(string, null)
-        event_hub_name                           = optional(string, null)
-        marketplace_partner_resource_id          = optional(string, null)
-    })
-    default = {
-        name = ""
-        resource_group_name = ""
+    validation {
+        condition     = length(var.vnets) > 0
+        error_message = "The virtual networks list must not be empty."
     }
-} */
-
-variable "log_analytics_workspaces_name" {
-    type = string
-
 }
-variable "log_analytics_workspaces_rg" {
-    type = string
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

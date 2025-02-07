@@ -1,6 +1,6 @@
 locals {
   # Tags to be applied to resources
-  diagnostic_settings_name ="${var.landingzone_prefix}-ci-${var.environment}"
+ 
   tags = {
     environment = var.environment
     landingzone = "connectivity"
@@ -36,4 +36,10 @@ locals {
       
     }
   ]       
+
+log_analytics_workspaces_name = "m-ci-p-la-01"
+log_analytics_workspaces_rg =  "m-ci-p-rg-01"
+
+
 }
+
