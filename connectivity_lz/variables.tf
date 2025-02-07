@@ -90,8 +90,29 @@ variable "vnets" {
   
 }
 
+variable "diagnostic_settings" {
+    description = "Diagnostic settings for resources"
+    type = map(object({
+        name                                     = optional(string, null)
+        log_categories                           = optional(set(string), [])
+        log_groups                               = optional(set(string), ["allLogs"])
+        metric_categories                        = optional(set(string), ["AllMetrics"])
+        log_analytics_destination_type           = optional(string, "Dedicated")
+        workspace_resource_id                    = optional(string, null)
+        storage_account_resource_id              = optional(string, null)
+        event_hub_authorization_rule_resource_id = optional(string, null)
+        event_hub_name                           = optional(string, null)
+        marketplace_partner_resource_id          = optional(string, null)
+    }))
+    default = {}
+}
 
-
+variable "log_analytics_workspaces" {
+    type = object({
+       name = string
+       resource_group_name = string
+    })  
+}
 
 
 

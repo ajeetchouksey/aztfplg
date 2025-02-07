@@ -22,3 +22,8 @@ vnets = [
     }
     # Add more virtual networks as needed
 ]
+
+log_analytics_workspaces = {
+  name = "m-ci-p-la-01"
+  resource_group_name = "m-ci-p-rg-01"
+}
