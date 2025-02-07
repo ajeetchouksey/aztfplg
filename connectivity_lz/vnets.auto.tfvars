@@ -10,7 +10,7 @@ vnets = [
             location = ""
             enable = false
         }
-        bgp_community = ""
+        bgp_community = "12076:20001"
         dhcp_options = ""
         enable_vm_protection = false
         encryption = {

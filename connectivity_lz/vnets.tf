@@ -9,7 +9,7 @@ module "vnets" {
         tags                = local.tags 
        // dns_servers = each.value.dns_servers
       //  ddos_protection_plan = each.value.ddos_protection_plan.id
-        bgp_community = each.value.bgp_community
+       // bgp_community = each.value.bgp_community
         //dhcpOptions = each.value.dhcp_options
         enable_vm_protection = each.value.enable_vm_protection
        // encryption = each.value.encryption
