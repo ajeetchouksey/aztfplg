@@ -15,7 +15,11 @@ vnets = [
         bgp_community = ""
         dhcp_options = ""
         enable_vm_protection = false
-        encryption = ""
+        encryption = {
+            key_vault_id = ""
+            key_name = ""
+            key_version = ""
+        }
        
     }
     # Add more virtual networks as needed

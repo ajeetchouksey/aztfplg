@@ -82,7 +82,11 @@ variable "vnets" {
         bgp_community = string
         dhcp_options = string
         enable_vm_protection = bool
-        encryption = string
+        encryption = object({
+            key_vault_id = string
+            key_name = string
+            key_version = string
+        })
         
     }))
   

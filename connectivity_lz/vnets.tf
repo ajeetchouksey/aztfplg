@@ -12,6 +12,6 @@ module "vnets" {
         bgp_community = each.value.bgp_community
         //dhcpOptions = each.value.dhcp_options
         enable_vm_protection = each.value.enable_vm_protection
-        encryption = each.value.encryption
+       // encryption = each.value.encryption
        
 }
