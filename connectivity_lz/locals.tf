@@ -36,4 +36,15 @@ locals {
     }
   ]       
 
+  # List of diagnostic settings for virtual networks
+  vnet_diagnostic_settings = [
+    for vnet in var.vnets : {
+      name = "${var.landingzone_prefix}-ci-${var.environment}-vnet-${vnet.id}-diga"    
+      log_groups = var.diagnostic_settings.log_groups
+      metric_categories = var.diagnostic_settings.metric_categories
+      log_analytics_destination_type = var.diagnostic_settings.log_analytics_destination_type
+    
+    }
+  ]
+
 }

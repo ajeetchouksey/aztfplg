@@ -92,8 +92,9 @@ variable "vnets" {
 
 variable "diagnostic_settings" {
     description = "Diagnostic settings for resources"
-    type = map(object({
-        name                                     = optional(string, null)
+    type = object({
+        name                                     = string
+        resource_group_name                      = string
         log_categories                           = optional(set(string), [])
         log_groups                               = optional(set(string), ["allLogs"])
         metric_categories                        = optional(set(string), ["AllMetrics"])
@@ -103,7 +104,7 @@ variable "diagnostic_settings" {
         event_hub_authorization_rule_resource_id = optional(string, null)
         event_hub_name                           = optional(string, null)
         marketplace_partner_resource_id          = optional(string, null)
-    }))
+    })
     default = {}
 }
 
