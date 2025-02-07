@@ -105,7 +105,10 @@ variable "diagnostic_settings" {
         event_hub_name                           = optional(string, null)
         marketplace_partner_resource_id          = optional(string, null)
     })
-    default = {}
+    default = {
+        name = ""
+        resource_group_name = ""
+    }
 }
 
 variable "log_analytics_workspaces" {
