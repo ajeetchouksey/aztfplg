@@ -10,9 +10,9 @@ output "vnet_address_spaces" {
     value = [for vnet in module.vnets : vnet.address_space]
 }
 output "resource_group_names" {
-    value = [for rg in module.resource_groups : rg.name]
+    value = [for rg in module.azurerm_resource_group : rg.name]
 }
 
 output "resource_group_locations" {
-    value = [for rg in module.resource_groups : rg.location]
+    value = [for rg in module.azurerm_resource_group : rg.location]
 }
