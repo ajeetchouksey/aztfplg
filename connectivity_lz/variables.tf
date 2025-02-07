@@ -70,9 +70,7 @@ variable "vnets" {
         location = string
         resource_group_id = number
         address_space = list(string)
-        dns_servers = object({
-            servers = list(string)
-        }) 
+        dns_servers = list(string)
         
         ddos_protection_plan = object({
             id = string
