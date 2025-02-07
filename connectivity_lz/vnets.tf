@@ -19,7 +19,7 @@ module "vnets" {
         //dhcpOptions = each.value.dhcp_options
         enable_vm_protection = each.value.enable_vm_protection
             diagnostic_settings = {
-                name                          = each.value.diagnostic_settings.name
+                name                          =local.diagnostic_settings_name
                 resource_group_name           = each.value.resource_group_name
                 log_analytics_workspace_id  = data.azurerm_log_analytics_workspace.lwa.id
                // log_groups                    = ["allLogs"]//lookup(each.value, "log_groups", ["allLogs"])
