@@ -74,7 +74,11 @@ variable "vnets" {
             servers = list(string)
         }) 
         
-        ddos_protection_plan = string
+        ddos_protection_plan = object({
+            id = string
+            location = string
+            enable = bool
+        })
         bgp_community = string
         dhcp_options = string
         enable_vm_protection = bool

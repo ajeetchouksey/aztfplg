@@ -7,7 +7,11 @@ vnets = [
         dns_servers = {
             servers = []
         }
-        ddos_protection_plan = ""
+        ddos_protection_plan = {
+            id = ""
+            location = ""
+            enable = false
+        }
         bgp_community = ""
         dhcp_options = ""
         enable_vm_protection = false
