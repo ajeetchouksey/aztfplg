@@ -24,7 +24,7 @@ module "vnets" {
                 log_analytics_workspace_id    = data.azurerm_log_analytics_workspace.lwa.id
                 log_groups                    = ["allLogs"]//lookup(each.value, "log_groups", ["allLogs"])
                 metric_categories             = ["AllMetrics"]//lookup(each.value, "metric_categories", ["AllMetrics"])
-                log_analytics_destination_type = "Dedicated"//lookup(each.value, "log_analytics_destination_type", "Dedicated")
+               // log_analytics_destination_type = "Dedicated"//lookup(each.value, "log_analytics_destination_type", "Dedicated")
             }
 
 }
