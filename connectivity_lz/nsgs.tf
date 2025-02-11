@@ -1,4 +1,4 @@
-data "azurerm_log_analytics_workspace" "lwa" {
+data "azurerm_log_analytics_workspace" "nsglwa" {
     name                = local.log_analytics_workspaces_name
     resource_group_name = local.log_analytics_workspaces_rg
 }
