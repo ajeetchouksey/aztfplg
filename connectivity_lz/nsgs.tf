@@ -11,19 +11,17 @@ module "nsgs" {
     location            = each.value.location
     resource_group_name = each.value.resource_group_name
 
-    dynamic "security_rule" {
-        for_each = each.value.security_rules
-        content {
-            name                        = security_rule.value.name
-            priority                    = security_rule.value.priority
-            direction                   = security_rule.value.direction
-            access                      = security_rule.value.access
-            protocol                    = security_rule.value.protocol
-            source_address_prefix       = security_rule.value.source_address_prefix
-            destination_address_prefix  = security_rule.value.destination_address_prefix
-            destination_port_range      = security_rule.value.destination_port_range
+    security_rule = [
+        for security_rule in each.value.security_rules : {
+            name                        = security_rule.name
+            priority                    = security_rule.priority
+            direction                   = security_rule.direction
+            access                      = security_rule.access
+            protocol                    = security_rule.protocol
+            source_address_prefix       = security_rule.source_address_prefix
+            destination_address_prefix  = security_rule.destination_address_prefix
+            destination_port_range      = security_rule.destination_port_range
         }
-    
-    }
+    ]
 
 }
