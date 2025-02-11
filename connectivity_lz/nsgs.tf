@@ -11,7 +11,7 @@ module "nsgs" {
     location            = each.value.location
     resource_group_name = each.value.resource_group_name
 
-    security_rule = [
+    security_rules = [
         for security_rule in each.value.security_rules : {
             name                        = security_rule.name
             priority                    = security_rule.priority
