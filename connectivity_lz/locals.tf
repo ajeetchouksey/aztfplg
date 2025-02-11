@@ -40,6 +40,27 @@ locals {
 log_analytics_workspaces_name = "m-ci-p-la-01"
 log_analytics_workspaces_rg =  "m-ci-p-rg-01"
 
+# List of network security groups with their properties
+nsgs = [
+  for nsg_key, nsg in var.security_rules : {
+    name = nsg_key
+    resource_group_name = element([for rg in local.resource_groups_name : rg.name], nsg.resource_group_id)
+    location = element([for rg in local.resource_groups_name : rg.location], nsg.resource_group_id)
+    security_rules = [
+      for rule_key, rule in nsg : {
+        name                        = rule.name
+        access                      = rule.access
+        direction                   = rule.direction
+        priority                    = rule.priority
+        protocol                    = rule.protocol
+        source_address_prefix       = rule.source_address_prefix
+        destination_address_prefix  = rule.destination_address_prefix
+        destination_port_range      = rule.destination_port_range
+      }
+    ]
+  }
+]
+
 
 }
 
