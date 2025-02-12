@@ -5,15 +5,16 @@ security_rules = [
         resource_group_id  = "0"
         security_rules = [
             {
-                name                        = "AllowSSH"
-                access                      = "Allow"
-                direction                   = "Inbound"
-                priority                    = 100
-                protocol                    = "Tcp"
-                source_address_prefix       = "*"
-                destination_address_prefix  = "*"
-                source_port_ranges          = ["Any"]
-                destination_port_range      = 22
+                name                        = "AllowHTTP"
+                access                     = "Allow"
+                destination_address_prefix = "*"
+                destination_port_ranges    = ["80", "443"]
+                direction                  = "Inbound"
+                priority                   = 200
+                protocol                   = "Tcp"
+                source_address_prefix      = "*"
+                source_port_range          = "*"
+               
             }
         ]
     }
