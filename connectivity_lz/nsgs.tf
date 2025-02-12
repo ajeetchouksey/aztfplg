@@ -11,10 +11,9 @@ module "nsgs" {
     location            = each.value.location
     resource_group_name = each.value.resource_group_name
 
-    security_rules = [
-        for security_rule in each.value.security_rules : {
+    security_rules = {
+        for security_rule in each.value.security_rules : security_rule.name => {
             name                        = security_rule.name
-            //resource_group_id           = security_rule.resource_group_id
             priority                    = security_rule.priority
             direction                   = security_rule.direction
             access                      = security_rule.access
@@ -23,6 +22,6 @@ module "nsgs" {
             destination_address_prefix  = security_rule.destination_address_prefix
             destination_port_range      = security_rule.destination_port_range
         }
-    ]
+    }
 
 }
