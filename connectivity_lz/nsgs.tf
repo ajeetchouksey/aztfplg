@@ -21,7 +21,7 @@ module "nsgs" {
             source_address_prefix       = rule.source_address_prefix
             destination_address_prefix  = rule.destination_address_prefix
             destination_port_range      = rule.destination_port_range
-            source_port_ranges         = rule.source_port_ranges
+            //source_port_ranges         = rule.source_port_ranges
         }
     }
 
