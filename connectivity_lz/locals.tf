@@ -42,12 +42,12 @@ log_analytics_workspaces_rg =  "m-ci-p-rg-01"
 
 # List of network security groups with their properties
 nsgs = [
-  for nsg_key, nsg in var.security_rules : {
-    name = nsg_key
-    resource_group_name = element([for rg in local.resource_groups_name : rg.name], 0)
-    location = element([for rg in local.resource_groups_name : rg.location], 0)
+  for nsg in var.security_rules : {
+    name = nsg.name
+    resource_group_name = element([for rg in local.resource_groups_name : rg.name], tonumber(nsg.resource_group_id))
+    location = nsg.location
     security_rules = [
-      for rule_key, rule in nsg : {
+      for rule in nsg.security_rules : {
         name                        = rule.name
         access                      = rule.access
         direction                   = rule.direction
@@ -56,6 +56,7 @@ nsgs = [
         source_address_prefix       = rule.source_address_prefix
         destination_address_prefix  = rule.destination_address_prefix
         destination_port_range      = rule.destination_port_range
+        source_port_ranges          = rule.source_port_ranges
       }
     ]
   }

@@ -119,32 +119,22 @@ variable "vnets" {
 
 
 
-variable "security_rules" {
-    type = map(map(object({
-        access                                     = string
-        description                                = optional(string)
-        destination_address_prefix                 = optional(string)
-        destination_address_prefixes               = optional(set(string))
-        destination_application_security_group_ids = optional(set(string))
-        destination_port_range                     = optional(string)
-        destination_port_ranges                    = optional(set(string))
-        direction                                  = string
-        name                                       = string
-        priority                                   = number
-        protocol                                   = string
-        //resource_group_id                          = string
-        source_address_prefix                      = optional(string)
-        source_address_prefixes                    = optional(set(string))
-        source_application_security_group_ids      = optional(set(string))
-        source_port_range                          = optional(string)            
-        source_port_ranges                         = optional(set(string))
-        timeouts = optional(object({
-            create = optional(string)
-            delete = optional(string)
-            read   = optional(string)
-            update = optional(string)
-        }))
-    })))
-    default     = {}
-    nullable    = false
+variable "security_rules"{
+  type = list(object({
+    name                = string
+    location            = string
+    resource_group_id  = string
+    security_rules = list(object({
+      name                        = string
+      access                      = string
+      direction                   = string
+      priority                    = number
+      protocol                    = string
+      source_address_prefix       = string
+      destination_address_prefix  = string
+      destination_port_range      = string
+      source_port_ranges          = list(string)
+    }))
+  }))
 }
+
