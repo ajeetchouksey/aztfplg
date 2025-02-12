@@ -13,17 +13,6 @@ security_rules = {
             source_address_prefix       = "*"
             destination_address_prefix  = "*"
             destination_port_range      = "22"
-        },
-        "rule2" = {
-            name = "DenyAllOutbound"
-            access                      = "Deny"
-            direction                   = "Outbound"
-            name                        = "DenyAllOutbound"
-            priority                    = 200
-            protocol                    = "*"
-            source_address_prefix       = "*"
-            destination_address_prefix  = "*"
-            destination_port_range      = "*"
         }
     }
     # add more NSG rules here
