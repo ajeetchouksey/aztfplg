@@ -12,17 +12,16 @@ module "nsgs" {
     resource_group_name = each.value.resource_group_name
 
     security_rules = {
-        for security_rule in each.value.security_rules : security_rule.name => {
-            name                        = security_rule.name
-            priority                    = security_rule.priority
-            direction                   = security_rule.direction
-            access                      = security_rule.access
-            protocol                    = security_rule.protocol
-            source_address_prefix       = security_rule.source_address_prefix
-            destination_address_prefix  = security_rule.destination_address_prefix
-            destination_port_range      = security_rule.destination_port_range
-            source_port_ranges           = security_rule.source_port_ranges
-           
+        for idx, rule in each.value.security_rules : idx => {
+            name                        = rule.name
+            access                      = rule.access
+            direction                   = rule.direction
+            priority                    = rule.priority
+            protocol                    = rule.protocol
+            source_address_prefix       = rule.source_address_prefix
+            destination_address_prefix  = rule.destination_address_prefix
+            destination_port_range      = rule.destination_port_range
+            source_port_ranges         = rule.source_port_ranges
         }
     }
 
