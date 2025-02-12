@@ -1,7 +1,7 @@
 security_rules = {
     "nsg1" = {
-        name = "nsg1"
-        resource_group_id = "0"
+        //name = "nsg1"
+       // resource_group_id = "0"
         
         "rule1" = {
             name = "AllowSSH"
