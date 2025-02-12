@@ -108,14 +108,14 @@ variable "vnets" {
     }
 }
 
-variable "log_analytics_workspace" {
+/* variable "log_analytics_workspace" {
     description = "The name of the Log Analytics workspace"
     type        = string
     validation {
         condition     = length(var.log_analytics_workspace) > 0
         error_message = "The Log Analytics workspace name must not be empty."
     }
-}   
+}    */
 
 
 
