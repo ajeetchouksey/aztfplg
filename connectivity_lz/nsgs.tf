@@ -14,7 +14,7 @@ module "nsgs" {
     security_rules = [
         for security_rule in each.value.security_rules : {
             name                        = security_rule.name
-            resource_group_id           = security_rule.resource_group_id
+            //resource_group_id           = security_rule.resource_group_id
             priority                    = security_rule.priority
             direction                   = security_rule.direction
             access                      = security_rule.access
