@@ -13,7 +13,7 @@ security_rules = [
                 source_address_prefix       = "*"
                 destination_address_prefix  = "*"
                 source_port_ranges          = ["Any"]
-                destination_port_range      = "22"
+                destination_port_range      = 22
             }
         ]
     }
