@@ -12,7 +12,7 @@ security_rules = {
             protocol                    = "Tcp"
             source_address_prefix       = "*"
             destination_address_prefix  = "*"
-            source_port_ranges         = ["*"]
+            SourcePortRanges         = ["*"]
             destination_port_range      = "22"
         }
     }

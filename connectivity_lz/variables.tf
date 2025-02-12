@@ -137,7 +137,7 @@ variable "security_rules" {
         source_address_prefixes                    = optional(set(string))
         source_application_security_group_ids      = optional(set(string))
         source_port_range                          = optional(string)
-        source_port_ranges                         = optional(set(string))
+        SourcePortRanges                         = optional(set(string))
         timeouts = optional(object({
             create = optional(string)
             delete = optional(string)
