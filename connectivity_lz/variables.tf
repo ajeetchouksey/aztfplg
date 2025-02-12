@@ -121,7 +121,6 @@ variable "vnets" {
 
 variable "security_rules" {
     type = map(map(object({
-        name                                       = string
         access                                     = string
         description                                = optional(string)
         destination_address_prefix                 = optional(string)
