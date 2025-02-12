@@ -132,6 +132,7 @@ variable "security_rules" {
         name                                       = string
         priority                                   = number
         protocol                                   = string
+        resource_group_id                          = number
         source_address_prefix                      = optional(string)
         source_address_prefixes                    = optional(set(string))
         source_application_security_group_ids      = optional(set(string))
