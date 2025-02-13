@@ -5,16 +5,15 @@ security_rules = [
         resource_group_id  = "0"
         security_rules = [
             {
-            name                       = "AllowVnetInBound"
-            priority                   = 100
-            direction                  = "Inbound"
-            access                     = "Allow"
-            protocol                   = "*"
-            source_port_range          = ""
-            source_port_ranges         = [80]
-            destination_port_range     = "*"
-            source_address_prefix      = "VirtualNetwork"
-            destination_address_prefix = "VirtualNetwork"
+                name                       = "test123"
+                priority                   = 100
+                direction                  = "Inbound"
+                access                     = "Allow"
+                protocol                   = "Tcp"
+                source_port_range          = "*"
+                destination_port_range     = "*"
+                source_address_prefix      = "*"
+                destination_address_prefix = "*"
             }
         ]
     }
