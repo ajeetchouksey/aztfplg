@@ -133,6 +133,7 @@ variable "security_rules"{
       source_address_prefix       = string
       destination_address_prefix  = string
       destination_port_range      = string
+      source_port_range          = string
       source_port_ranges          = list(string)
     }))
   }))
