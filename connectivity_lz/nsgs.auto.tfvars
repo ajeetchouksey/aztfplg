@@ -10,6 +10,7 @@ security_rules = [
             direction                  = "Inbound"
             access                     = "Allow"
             protocol                   = "*"
+            source_port_range          = ""
             source_port_ranges         = ["*"]
             destination_port_range     = "*"
             source_address_prefix      = "VirtualNetwork"
