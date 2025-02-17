@@ -10,6 +10,7 @@ security_rules = [
                 direction                  = "Inbound"
                 access                     = "Allow"
                 protocol                   = "Tcp"
+                source_port_range         = ""
                 source_port_ranges          = [443] 
                 destination_port_range     = "*"
                 source_address_prefix      = "*"
