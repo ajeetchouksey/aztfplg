@@ -11,7 +11,7 @@ module "nsgs" {
     resource_group_name = each.value.resource_group_name
 
     security_rules = {
-        for idx, rule in each.value.security_rules : idx => {
+        for idx, rule in each.value.nsgs : idx => {
             name = rule.name
             access = rule.access
             direction = rule.direction

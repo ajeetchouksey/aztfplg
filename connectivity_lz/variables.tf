@@ -124,7 +124,7 @@ variable "security_rules"{
     name                = string
     location            = string
     resource_group_id  = string
-    security_rules = list(object({
+    nsgs = list(object({
       name                        = string
       access                      = string
       direction                   = string
