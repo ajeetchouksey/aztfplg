@@ -46,8 +46,8 @@ nsgs = [
     name = nsg.name
     resource_group_name = element([for rg in local.resource_groups_name : rg.name], tonumber(nsg.resource_group_id))
     location = nsg.location
-    security_rules = [
-      for rule in nsg.security_rules : {
+    nsgs = [
+      for rule in nsg.nsgs : {
         name                        = rule.name
         access                      = rule.access
         direction                   = rule.direction
